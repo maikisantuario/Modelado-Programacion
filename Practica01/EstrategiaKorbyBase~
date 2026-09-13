@@ -1,0 +1,22 @@
+/**
+ *Estrategia base para el personaje Korby. Mantiene un  ataque y defensa básicos.
+ */
+public class EstrategiaKorbyBase implements EstrategiaPelea {
+    @Override
+    public int atacar() { 
+        System.out.println("Korby aun siendo tan adorable ataca sin piedad a ");
+	 System.out.println("+ 2000 de Aura 🗿🔥");
+        return 20; 
+    }
+
+    @Override
+    public int defender(int impacto) { 
+        System.out.println("Dittuu adopta una forma gelatinosa para absorber parte del impacto.");
+        return impacto - 1; 
+    }
+
+    @Override
+    public String obtenerNombre() { 
+        return "Dittuu Base"; 
+    }
+}

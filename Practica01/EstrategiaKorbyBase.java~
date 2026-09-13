@@ -1,0 +1,28 @@
+import java.util.Random;
+
+/**
+*Estrategia base para el personaje Korby. Mantiene un  ataque y defensa básicos.
+*/
+public class EstrategiaKorbyBase implements EstrategiaPelea {
+private Random random = new Random();
+@Override
+public int atacar(Combatiente objetivo) {
+int danio = 20;
+int auraObtenida = 1000 + random.nextInt(2001);
+System.out.println("Korby aun siendo tan adorable ataca sin piedad a " + objetivo.obtenerNombre());
+System.out.println("+ " + auraObtenida + "2000 de Aura 🗿🔥");
+Return 20; 
+}
+
+@Override
+public int defender(int impacto) { 
+System.out.println("El pobre Korby, es atacado y lastimado, se ve una peque;a lagrima salir de su ojo derecho :(");
+System.out.println("- 2000 de Aura 🗿🔥");
+return impacto - 1; 
+}
+
+@Override
+public String obtenerNombre() { 
+return "Korby Base"; 
+}
+}

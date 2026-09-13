@@ -9,7 +9,7 @@ public interface EstrategiaPelea {
      * @return 
      */
 
-    int atacar();
+    int atacar(Combatiente objetivo);
 
     /**
      * Calcula el danio que recibe al defender.
@@ -17,7 +17,7 @@ public interface EstrategiaPelea {
      * @return Cantidad de danio final recibido.
      */
 
-    int defender(int impacto);
+    int defender(Combatiente atacante);
 
     /**
      * Regresa el nombre de la estrategia o poder actual.
