@@ -1,14 +1,19 @@
+import java.util.Random;
+
 /**
  * Clase abstracta que representa al personaje combatiente.
  * Contiene los atributos basicos.
  */
-
 public abstract class Combatiente {
+
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
 
     protected String nombre;
     protected EstrategiaPelea estrategiaActual;
-    protected int porcentajeVida;
-    protected boolean vivo;
+    protected int aura;
+    protected Random random;
 
     /**
      * @param nombre Nombre del personaje.
@@ -16,9 +21,9 @@ public abstract class Combatiente {
      */
     public Combatiente(String nombre, EstrategiaPelea estrategiaBase) {
         this.nombre = nombre;
+        this.aura = 6767;
         this.estrategiaActual = estrategiaBase;
-        this.porcentajeVida = 100; // Inicia con la vida completa
-        this.vivo = true;
+        this.random = new Random();
     }
 
     /**
@@ -29,12 +34,15 @@ public abstract class Combatiente {
         this.estrategiaActual = nuevaEstrategia;
     }
 
+    public EstrategiaPelea getEstrategiaActual() {
+        return estrategiaActual;
+    }
+
     /**
      * Consume un objeto de poder para cambiar de estrategia.
      * @param objeto
      * @return
      */
-
     public boolean consumirObjeto(ObjetoPoder objeto) {
         if (objeto != null && !objeto.estaConsumido()) {
             this.setEstrategia(objeto.obtenerEstrategia());
@@ -47,49 +55,49 @@ public abstract class Combatiente {
 
     /**
      * Realiza un ataque usando la estrategia nueva
-     * @return El danio infligido.
+     * @param objetivo Personaje que recibe el ataque
+     * @return El aura ganada.
      */
-    public int realizarAtaque() {
-        if (!this.vivo) return 0;
-        int danio = this.estrategiaActual.atacar(this);
-        System.out.println(this.nombre + " ataca con " + this.estrategiaActual.obtenerNombre() + " causo " + danio + " de danio.");
-        return danio;
+    public int realizarAtaque(Combatiente objetivo) {
+        int auraGanada = this.estrategiaActual.atacar(objetivo);
+        this.aura += auraGanada;
+        System.out.println(this.nombre + " ataca con " + this.estrategiaActual.obtenerNombre() + " ganando " + VERDE + "+" + auraGanada + " de Aura." + RESET);
+        return auraGanada;
     }
 
     /**
      * Recibe un golpe en combate.
-     * @param impacto Danio entrante.
+     * @param atacante Personaje que realiza el ataque.
      * @param seDefiende 
+     * @return El aura perdida.
      */
-    public void recibirImpacto(int impacto, boolean seDefiende) {
-        if (!this.vivo) return;
+    public int recibirImpacto(Combatiente atacante, boolean seDefiende) {
+        int auraPerdida;
 
-        int danioFinal = impacto;
         if (seDefiende) {
-            int reduccion = this.estrategiaActual.defender(this);
-            danioFinal = Math.max(0, impacto - reduccion);
-            System.out.println(this.nombre + " se defiende con " + this.estrategiaActual.obtenerNombre() + " reduciendo el danio a " + danioFinal + ".");
+            auraPerdida = this.estrategiaActual.defender(atacante);
+            System.out.println(this.nombre + " se defiende con " + this.estrategiaActual.obtenerNombre() + " reduciendo el danio.");
         } else {
-            System.out.println(this.nombre + " recibio " + danioFinal + " de danio.");
+            auraPerdida = 1500 + random.nextInt(1501);
+            System.out.println(this.nombre + " se distrajo y recibio el golpe directo de " + atacante.obtenerNombre() + "!");
+            System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + RESET);
         }
 
-        this.porcentajeVida -= danioFinal;
-        if (this.porcentajeVida <= 0) {
-            this.porcentajeVida = 0;
-            this.vivo = false;
-            System.out.println(this.nombre + " ha sido derrotado.");
-        }
+        // Se descuenta el aura una sola vez al finalizar el cálculo
+        this.aura = Math.max(0, this.aura - auraPerdida);
+        return auraPerdida;
     }
 
     /**
      * Verifica si el combatiente sigue en el combate.
      * @return
      */
-    public boolean estaVivo() {
-        return this.vivo;
+    public boolean tieneAura() {
+        return this.aura > 0;
     }
 
     public String getNombre() { return nombre; }
-    public int getPorcentajeVida() { return porcentajeVida; }
+    public String obtenerNombre() { return nombre; }
+    public int getAura() { return aura; }
     public String getNombrePoder() { return estrategiaActual.obtenerNombre(); }
 }

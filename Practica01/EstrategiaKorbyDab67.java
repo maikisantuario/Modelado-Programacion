@@ -4,7 +4,8 @@ import java.util.Random;
  * Estrategia de ondas para Korby. Simula ondas de viento que empujan y dañan a
  * sus enemigos y disminuyen el daño de los ataques que se aproximen.
  */
-public class EstrategiaKrobyDab67 implements EstrategiaPelea {
+public class EstrategiaKorbyDab67 implements EstrategiaPelea {
+    
     public static final String ROJO = "\u001B[31m";
     public static final String VERDE = "\u001B[32m";
     public static final String RESET = "\u001B[0m";
@@ -17,7 +18,7 @@ public class EstrategiaKrobyDab67 implements EstrategiaPelea {
 			   "\nEl poder del Dab67 genera ondas de viento inigualables :O" +
 			   "\nKorby con su gran Dab67 empuja por los aires a: " + objetivo.obtenerNombre());
         System.out.println(VERDE +"+ " + auraObtenida + " de Aura 🗿🔥"+ RESET);
-        Return auraObtenida; 
+        return auraObtenida; 
     }
 
     @Override
