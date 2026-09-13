@@ -1,6 +1,6 @@
-import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Clase principal que se encarga de ser el orquestador del programa
@@ -47,10 +47,10 @@ public class Main {
 		opcionLuchadorValida = true;
 		break;
 	    case "3":
-		luchadorFavorito = "MegaMan";
+		luchadorFavorito = "MeganMan";
 		System.out.println("\nHas escogido a MegaMan\n" +
-				   "Habilidades:\n>Habilidad1\n>Habilidad2\n>Habilidad3\n" +
-				   "'catchfrase'");
+				   "Habilidades:\n> ⚔️ Espada\n> 💣 Bomba\n> 🤖 Mini\n" +
+				   "¡Sistema de combate activado! ¡A farmear aura!");
 		opcionLuchadorValida = true;
 		break;
 	    default:
