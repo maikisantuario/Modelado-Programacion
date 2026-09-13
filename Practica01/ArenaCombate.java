@@ -28,11 +28,12 @@ public class ArenaCombate implements Sujeto {
      */
     private String seleccionarNombreAleatorio() {
         String[] nombres = {
-            "Coliseo Ciberetico", 
-            "Cúpula de Plasma", 
-            "Estadio Dimensional", 
-            "Arena de Sombras Gelatinosas", 
-            "Coliseo del Nexo Estelar"
+            "Bucle de Aurabytes", 
+            "Cúpula Aurea", 
+            "Estadio Auralan", 
+            "Pumaura Locura en Ciencias",
+	    "La maquina de AuraTuring",
+	    "El cafecin: aura de nunca jamas"
         };
         return nombres[random.nextInt(nombres.length)];
     }
