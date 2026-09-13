@@ -51,7 +51,7 @@ public abstract class Combatiente {
      */
     public int realizarAtaque() {
         if (!this.vivo) return 0;
-        int dano = this.estrategiaActual.atacar();
+        int danio = this.estrategiaActual.atacar();
         System.out.println(this.nombre + " ataca con " + this.estrategiaActual.obtenerNombre() + " causo " + danio + " de danio.");
         return danio;
     }
@@ -64,15 +64,15 @@ public abstract class Combatiente {
     public void recibirImpacto(int impacto, boolean seDefiende) {
         if (!this.vivo) return;
 
-        int danoFinal = impacto;
+        int danioFinal = impacto;
         if (seDefiende) {
             danioFinal = this.estrategiaActual.defender(impacto);
             System.out.println(this.nombre + " se defiende con " + this.estrategiaActual.obtenerNombre() + " reduciendo el danio a " + danioFinal + ".");
         } else {
-            System.out.println(this.nombre + " recibio " + danoFinal + " de danio.");
+            System.out.println(this.nombre + " recibio " + danioFinal + " de danio.");
         }
 
-        this.porcentajeVida -= danoFinal;
+        this.porcentajeVida -= danioFinal;
         if (this.porcentajeVida <= 0) {
             this.porcentajeVida = 0;
             this.vivo = false;
