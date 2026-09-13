@@ -1,5 +1,5 @@
 /**
- * Estrategia de ataque para MeganMan, saca una bomba que hace daño a los enemigos.
+ * Estrategia de ataque para MeganMan, saca una bomba que hace daño a los enemigos cercanos.
  */
 
 public class EstrategiaMeganManBomba implements EstrategiaPelea {
