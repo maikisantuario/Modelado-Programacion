@@ -1,17 +1,25 @@
+import java.util.Random;
+
 /**
- *Estrategia base para el personaje Dittuu. Mantiene un ataque y defensa básicos.
+ * Estrategia base para el personaje Dittuu. Mantiene un ataque y defensa básicos.
  */
 public class EstrategiaDittuuBase implements EstrategiaPelea {
+    private Random random = new Random();
+
     @Override
-    public int atacar() { 
-        System.out.println("Dittuu analiza al rival y ejecuta un golpe con precision.");
-        return 8; 
+    public int atacar(Combatiente objetivo) {
+        int auraObtenida = 1000 + random.nextInt(2001);
+        System.out.println("Dittuu analiza al rival y ejecuta un golpe con precisión contra " + objetivo.obtenerNombre());
+        System.out.println("+ " + auraObtenida + " de Aura 🗿🔥");
+        return auraObtenida; 
     }
 
     @Override
-    public int defender(int impacto) { 
-        System.out.println("Dittuu adopta una forma gelatinosa para absorber parte del impacto.");
-        return impacto - 1; 
+    public int defender(Combatiente atacante) {
+        int auraPerdida = 1000 + random.nextInt(2001);
+        System.out.println(atacante.obtenerNombre() + " ataca a Dittuu, quien adopta una forma gelatinosa para absorber parte del impacto.");
+        System.out.println("- " + auraPerdida + " de Aura 🥶💦");
+        return auraPerdida; 
     }
 
     @Override
