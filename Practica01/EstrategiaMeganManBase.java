@@ -1,21 +1,31 @@
+import java.util.Random;
+
 /**
- *Estrategia base para el personaje MeganMan.
+ * Estrategia base para el personaje MeganMan.
  */
 
 public class EstrategiaMeganManBase implements EstrategiaPelea {
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    private Random random = new Random();
 
     @Override
-    public int atacar() {
-        System.out.println("MeganMan apunta con firmeza y dispara!");
-        System.out.println(">> Farmeo de aura: Danio critico detectado! 12 de energia!");
-        return 12;
+    public int atacar(Combatiente objetivo) {
+        int danioBase = 500 + random.nextInt(1001); // Entre 500 y 1500
+        System.out.println("MeganMan apunta con firmeza a " + objetivo.obtenerNombre() + " y dispara sin piedad!");
+        System.out.println(">> ¡Sistema de combate activado: A farmear aura!");
+        System.out.println(VERDE + "+ " + danioBase + " de danio 💥🔫" + RESET);
+        return danioBase;
     }
 
     @Override
-    public int defender(int impacto) {
-        System.out.println("MeganMan activa su armadura de titanio para poder resistir el golpe!");
-        System.out.println(">> La armadura reduce el impacto! Danio mitigado en 2 puntos!");
-        return Math.max(0, impacto - 2); // Devuelve el danio final
+    public int defender(Combatiente atacante) {
+        int danioReducido = 200 + random.nextInt(301); // Entre 200 y 500
+        System.out.println(atacante.obtenerNombre() + " ataca a MeganMan, pero su armadura resiste!");
+        System.out.println(">> La armadura reduce el impacto!");
+        System.out.println(ROJO + "- " + danioReducido + " de danio mitigado 🛡️" + RESET);
+        return danioReducido;
     }
 
     @Override

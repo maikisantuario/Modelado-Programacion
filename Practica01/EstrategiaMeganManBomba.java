@@ -1,23 +1,33 @@
+import java.util.Random;
+
 /**
- * Estrategia de ataque para MeganMan, saca una bomba que hace daño a los enemigos cercanos.
+ * Estrategia de ataque para MeganMan, saca una bomba que hace dano a los enemigos cercanos.
  */
 
 public class EstrategiaMeganManBomba implements EstrategiaPelea {
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    private Random random = new Random();
 
     @Override
-    public int atacar() {
-        System.out.println("MeganMan apunta al cielo y dispara una bomba");
+    public int atacar(Combatiente objetivo) {
+        int danioBomba = 2000 + random.nextInt(1001); // Entre 2000 y 3000
+        System.out.println("MeganMan apunta al cielo y dispara una bomba!");
         System.out.println(">> El proyectil brilla y estalla en lo alto de la arena!");
         System.out.println(">> ¡BOOOOOM! ¡Empiezan a caer escombros y metralla por todos lados!");
-        System.out.println(">> El ataque golpea a todos los que estan en la arena! 25 de danio!");
-        return 25;
+        System.out.println(">> El ataque golpea a " + objetivo.obtenerNombre() + " y a todos los que estan en la arena!");
+        System.out.println(VERDE + "+ " + danioBomba + " de danio 💣🔥" + RESET);
+        return danioBomba;
     }
 
     @Override
-    public int defender(int impacto) {
-        System.out.println("MeganMan esta recargando su bomba y no puede esquivar los escombros...");
-        System.out.println(">> ¡CRASH! Recibe el golpe casi de lleno. No puede mitigar el daño por completo!");
-        return Math.max(0, impacto - 1);
+    public int defender(Combatiente atacante) {
+        int danioReducido = 100 + random.nextInt(101); // Entre 100 y 200 (Defensa muy baja)
+        System.out.println("MeganMan esta recargando su bomba y no puede esquivar los escombros de " + atacante.obtenerNombre() + "!");
+        System.out.println(">> ¡CRASH! Recibe el golpe casi de lleno!");
+        System.out.println(ROJO + "- " + danioReducido + " de danio mitigado 💥" + RESET);
+        return danioReducido;
     }
 
     @Override
