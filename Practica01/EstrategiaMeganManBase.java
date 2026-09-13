@@ -1,3 +1,7 @@
+/**
+ *Estrategia base para el personaje MeganMan.
+ */
+
 public class EstrategiaMeganManBase implements EstrategiaPelea {
 
     @Override
