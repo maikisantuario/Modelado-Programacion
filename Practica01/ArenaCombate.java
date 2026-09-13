@@ -78,17 +78,18 @@ public class ArenaCombate implements Sujeto {
      * @param defensor Combatiente defensor.
      * @param seDefiende Indica si el defensor usa su defensa.
      */
-    public void procesarAtaque(Combatiente personaje, Combatiente defensor, boolean seDefiende) {
-        notificar("¡TURNO DE ACCION!: " + personaje.getNombre() + " se prepara para atacar a " + defensor.getNombre() + ".");
+    public void procesarAtaque(Combatiente atacante, Combatiente defensor, boolean seDefiende) {
+        notificar("¡TURNO DE ACCION!: " + atacante.getNombre() + " se prepara para atacar a " + defensor.getNombre() + ".");
+
+        int auraGanada = atacante.realizarAtaque(defensor);
+        notificar("Reporte desde " + this.nombreArena + ": " + atacante.getNombre() + " ha generado " + auraGanada + " de Aura 🗿📈.");
+
+        int auraPerdida = defensor.recibirImpacto(atacante, seDefiende);
+        notificar("Reporte desde " + this.nombreArena + ": " + defensor.getNombre() + " ha perdido " + auraPerdida + " de Aura 🫠📉.");
         
-        int dano = personaje.realizarAtaque();
-        
-        // Notificamos el impacto antes de aplicarlo
-        notificar("Reporte desde " + this.nombreArena + ": Impacto lanzado con un valor base de " + dano + ".");
-        
-        defensor.recibirImpacto(dano, seDefiende);
-        
-        notificar("Estado actual -> " + defensor.getNombre() + " cuenta ahora con " + defensor.getPorcentajeVida() + "% de vida.");
+        // Notificación de los marcadores de Aura actualizados
+        notificar("Estado de Aura:\n" + atacante.getNombre() + ": " + atacante.getAura() + " pts de Aura 🔥.\n" +
+                  defensor.getNombre() + ": " + defensor.getAura() + " pts de Aura 🔥.");
     }
 
     /**

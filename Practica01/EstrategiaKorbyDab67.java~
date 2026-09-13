@@ -1,0 +1,32 @@
+import java.util.Random;
+
+/**
+ * Estrategia de ondas para Korby. Simula ondas de viento que empujan y dañan a
+ * sus enemigos y disminuyen el daño de los ataques que se aproximen.
+ */
+public class EstrategiaKrobyDab67 implements EstrategiaPelea {
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    private Random random = new Random();
+
+    @Override
+    public int atacar() { 
+        int auraObtenida = 1000 + random.nextInt(2001);
+        System.out.println("Korby hace un gran Dab67 y empuja por los aires a: " + objetivo.obtenerNombre());
+        System.out.println(VERDE +"+ " + auraObtenida + " de Aura 🗿🔥"+ VERDE);
+        return auraObtenida; 
+    }
+
+    @Override
+    public int defender(int impacto) { 
+        int auraPerdida = 500 + random.nextInt(1001);
+        System.out.println("Con un Dab67, Korby logra empujar y disipar el ataque de " + atacante.obtenerNombre());
+        System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + ROJO);
+        return auraPerdida; 
+    }
+
+    @Override
+    public String obtenerNombre() { 
+        return "Korby Dab67"; 
+    }
+}
