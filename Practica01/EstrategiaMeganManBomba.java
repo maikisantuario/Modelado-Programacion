@@ -16,7 +16,7 @@ public class EstrategiaMeganManBomba implements EstrategiaPelea {
         System.out.println("MeganMan apunta al cielo y dispara una bomba!");
         System.out.println(">> El proyectil brilla y estalla en lo alto de la arena!");
         System.out.println(">> ¡BOOOOOM! ¡Empiezan a caer escombros y metralla por todos lados!");
-        System.out.println(">> El ataque golpea a " + objetivo.obtenerNombre() + " y a todos los que estan en la arena!");
+        System.out.println(">> El ataque golpea a " + objetivo.getNombre() + " y a todos los que estan en la arena!");
         System.out.println(VERDE + "+ " + danioBomba + " de danio 💣🔥" + RESET);
         return danioBomba;
     }
@@ -24,7 +24,7 @@ public class EstrategiaMeganManBomba implements EstrategiaPelea {
     @Override
     public int defender(Combatiente atacante) {
         int danioReducido = 100 + random.nextInt(101); // Entre 100 y 200 (Defensa muy baja)
-        System.out.println("MeganMan esta recargando su bomba y no puede esquivar los escombros de " + atacante.obtenerNombre() + "!");
+        System.out.println("MeganMan esta recargando su bomba y no puede esquivar los escombros de " + atacante.getNombre() + "!");
         System.out.println(">> ¡CRASH! Recibe el golpe casi de lleno!");
         System.out.println(ROJO + "- " + danioReducido + " de danio mitigado 💥" + RESET);
         return danioReducido;

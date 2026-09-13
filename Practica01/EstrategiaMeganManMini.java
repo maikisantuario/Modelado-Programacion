@@ -13,7 +13,7 @@ public class EstrategiaMeganManMini implements EstrategiaPelea {
     @Override
     public int atacar(Combatiente objetivo) {
         int danioMini = 300 + random.nextInt(301); // Entre 300 y 600
-        System.out.println("MeganMan saca a su forma Mini y comienza a correr en circulos alrededor de " + objetivo.obtenerNombre() + "!");
+        System.out.println("MeganMan saca a su forma Mini y comienza a correr en circulos alrededor de " + objetivo.getNombre() + "!");
         System.out.println(">> ¡PIP PIP PIP! Demasiados disparos, quiere dejar a su oponente como colador!");
         System.out.println(VERDE + "+ " + danioMini + " de danio 🔫" + RESET);
         return danioMini;
@@ -22,7 +22,7 @@ public class EstrategiaMeganManMini implements EstrategiaPelea {
     @Override
     public int defender(Combatiente atacante) {
         int danioReducido = 800 + random.nextInt(401); // Entre 800 y 1200 (Defensa alta)
-        System.out.println("MeganMan Mini se esconde detras de una piedra diminuta mientras " + atacante.obtenerNombre() + " ataca!");
+        System.out.println("MeganMan Mini se esconde detras de una piedra diminuta mientras " + atacante.getNombre() + " ataca!");
         System.out.println(">> ¡Demasiado lento! MeganMan Mini esquiva haciendo un backflip!");
         System.out.println(ROJO + "- " + danioReducido + " de danio esquivado 🛡️💨" + RESET);
         return danioReducido;

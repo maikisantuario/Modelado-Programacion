@@ -13,7 +13,7 @@ public class EstrategiaMeganManBase implements EstrategiaPelea {
     @Override
     public int atacar(Combatiente objetivo) {
         int danioBase = 500 + random.nextInt(1001); // Entre 500 y 1500
-        System.out.println("MeganMan apunta con firmeza a " + objetivo.obtenerNombre() + " y dispara sin piedad!");
+        System.out.println("MeganMan apunta con firmeza a " + objetivo.getNombre() + " y dispara sin piedad!");
         System.out.println(">> ¡Sistema de combate activado: A farmear aura!");
         System.out.println(VERDE + "+ " + danioBase + " de danio 💥🔫" + RESET);
         return danioBase;
@@ -22,7 +22,7 @@ public class EstrategiaMeganManBase implements EstrategiaPelea {
     @Override
     public int defender(Combatiente atacante) {
         int danioReducido = 200 + random.nextInt(301); // Entre 200 y 500
-        System.out.println(atacante.obtenerNombre() + " ataca a MeganMan, pero su armadura resiste!");
+        System.out.println(atacante.getNombre() + " ataca a MeganMan, pero su armadura resiste!");
         System.out.println(">> La armadura reduce el impacto!");
         System.out.println(ROJO + "- " + danioReducido + " de danio mitigado 🛡️" + RESET);
         return danioReducido;
