@@ -10,6 +10,13 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String AZUL = "\u001B[34m";
+    public static final String MORADO = "\u001B[35m";
+    public static final String ROSA = "\u001B[38;2;255;182;193m";
+    public static final String RESET = "\u001B[0m";
+	
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArenaCombate arena = new ArenaCombate();
@@ -34,23 +41,23 @@ public class Main {
 	    switch (opcionLuchador) {
 	    case "1":
 		luchadorFavorito = "Dittuu";
-		System.out.println("\nHas escogido a Dittuu\n" +
+		System.out.println("\nHas escogido a " + MORADO + "Dittuu\n" +
 				   "Habilidades:\n> ☣️ AgujaToxica\n> 🍮 GelatinaDuplicadora\n> ⛈️ VidaTormentosa\n" +
-				   "¡Sientan cómo mi aura consume sus esperanzas!");
+				   "¡Sientan cómo mi aura consume sus esperanzas!" + RESET);
 		opcionLuchadorValida = true;
 		break;
 	    case "2":
 		luchadorFavorito = "Korby";
-		System.out.println("\nHas escogido a Korby\n" +
-				   "Habilidades:\n>Habilidad1\n>Habilidad2\n>Habilidad3\n" +
-				   "catchfrase");
+		System.out.println("\nHas escogido a " + ROSA + "Korby\n" +
+				   "Habilidades:\n> ❄️ LetItGo\n> 😮‍💨 ElDab-67\n> 😍 ElMasTiernoDelCondado\n" +
+				   "¡Tan bonito que te puedes moriiiir!" + RESET);
 		opcionLuchadorValida = true;
 		break;
 	    case "3":
 		luchadorFavorito = "MeganMan";
-		System.out.println("\nHas escogido a MegaMan\n" +
+		System.out.println("\nHas escogido a " + AZUL + "MegaMan\n" +
 				   "Habilidades:\n> ⚔️ Espada\n> 💣 Bomba\n> 🤖 Mini\n" +
-				   "¡Sistema de combate activado! ¡A farmear aura!");
+				   "¡Sistema de combate activado! ¡A farmear aura!" + RESET);
 		opcionLuchadorValida = true;
 		break;
 	    default:
@@ -58,17 +65,17 @@ public class Main {
 		break;
 	    }
 	}
-	/* Instanciación del usuario como espectador
-        Espectador usuario = new Espectador(IDUsuario, luchadorFavorito);
-        arena.registrar(usuario);
+	// Instanciación del usuario como espectador
+	//Observador usuario = new Observador(IDUsuario, luchadorFavorito);
+	//arena.registrar(usuario);
 
-        // Creación e inclusión de los combatientes
-        luchadores.add(new Dittuu());
-        luchadores.add(new Korby());
-        luchadores.add(new MeganMan());
+	/* Creación e inclusión de los combatientes
+	   luchadores.add(new Dittuu());
+	   luchadores.add(new Korby());
+	   luchadores.add(new MeganMan());
 
-        // Inicio del bucle de simulación
-	// Arena.iniciarPelea(luchadores); */
+	   // Inicio del bucle de simulación
+	   // Arena.iniciarPelea(luchadores); */
 
         scanner.close();
 	
