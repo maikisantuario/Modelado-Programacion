@@ -4,6 +4,9 @@ import java.util.Random;
  * Estrategia base para el personaje Dittuu. Mantiene un ataque y defensa básicos.
  */
 public class EstrategiaDittuuBase implements EstrategiaPelea {
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
     private Random random = new Random();
 
     @Override
