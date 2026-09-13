@@ -1,5 +1,5 @@
 /**
- *Estrategia base para el personaje Dittuu. Mantiene un  ataque y defensa básicos.
+ *Estrategia base para el personaje Dittuu. Mantiene un ataque y defensa básicos.
  */
 public class EstrategiaDittuuBase implements EstrategiaPelea {
     @Override

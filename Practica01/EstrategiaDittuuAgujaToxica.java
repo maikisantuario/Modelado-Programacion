@@ -2,7 +2,7 @@
  * Estrategia de veneno para Dittuu. Forma una cola con aguja para infectar
  * al oponente y genera un capullo acido defensivo.
  */
-public class EstrategiaDittuuVeneno implements EstrategiaPelea {
+public class EstrategiaDittuuAgujaToxica implements EstrategiaPelea {
 
     @Override
     public int atacar() { 
