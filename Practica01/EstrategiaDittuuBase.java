@@ -18,3 +18,4 @@ public class EstrategiaDittuuBase implements EstrategiaPelea {
     public String obtenerNombre() { 
         return "Dittuu Base"; 
     }
+}
