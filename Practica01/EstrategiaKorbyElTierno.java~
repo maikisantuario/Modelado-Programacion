@@ -1,0 +1,40 @@
+import java.util.Random;
+
+/**
+ * Estrategia de ternura para Korby. Korby tiene el poder de irradiar
+ * tanta ternura que logra desconcentrar a sus oponente para atacarlos
+ * o en ocaciones, para que le tengan más piedad.
+ */
+public class EstrategiaKorbyElTierno implements EstrategiaPelea {
+    
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String RESET = "\u001B[0m";
+    private Random random = new Random();
+
+    @Override
+    public int atacar(Combatiente objetivo) { 
+        int auraObtenida = 1000 + random.nextInt(2001);
+        System.out.println("Miren a esa pequeña criatura tan tierna awwww \nMis ojos no pueden ver entra tanta luz de belleza" +
+			   "\nAWWWWWWWWWW KORBYYYYY" +
+			   "\nKorby paraliza con ternura a: " + objetivo.obtenerNombre() +
+			   "y aprovecha el momento para atacarlos por la espalda.");
+        System.out.println(VERDE +"+ " + auraObtenida + " de Aura 🗿🔥"+ RESET);
+        return auraObtenida; 
+    }
+
+    @Override
+    public int defender(Combatiente atacante) { 
+        int auraPerdida = 500 + random.nextInt(201);
+	System.out.println(atacante.obtenerNombre() + "intenta atacar a Korby.");
+        System.out.println("Korby utiliza su ternura para confundir a " + atacante.obtenerNombre() +
+			   "y este cautivado, se apiada del bello Korby y reduce el ataque.");
+        System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + RESET);
+        return auraPerdida; 
+    }
+
+    @Override
+    public String obtenerNombre() { 
+        return "Korby LetItGo"; 
+    }
+}

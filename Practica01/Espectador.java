@@ -22,10 +22,10 @@ public class Espectador implements Observador {
      * @param personajeFavorito Nombre del personaje al que apoyas!
      */
 
-    public Espectador(String personajeFavorito) {
+    public Espectador(String id,String personajeFavorito) {
         Random random = new Random();
         int numeroAleatorio = 100 + random.nextInt(900);
-        this.id = "espectador" + numeroAleatorio;
+        this.id = id + numeroAleatorio;
         this.personajeFavorito = personajeFavorito;
         this.bitacoraEventos = new ArrayList<>();
         // Se crea el archivo de bitacora vacio.
@@ -45,7 +45,7 @@ public class Espectador implements Observador {
     @Override
     public void finalizarTransmision(String ganador) {
         String resultado;
-        if (ganador.equalsIgnoreCase(personajeFavorito)) {
+        if (ganador.toLowerCase().contains(personajeFavorito.toLowerCase())) {
             resultado = "¡Mi personaje " + personajeFavorito + " ha GANADO ><";
         } else {
             resultado = "Mi personaje  " + personajeFavorito + " ha PERDIDO :c ";
@@ -87,13 +87,13 @@ public class Espectador implements Observador {
     private void limpiarBitacora() {
         String nombreArchivo = "bitacora_" + id + ".txt";
         try (PrintWriter writer = new PrintWriter(new FileWriter(nombreArchivo, false))) {
-            writer.println("=========================================");
+            writer.println("===============================================================================");
             writer.println("   ¡BIENVENIDO A LA BATALLA PARA FARMEAR AURA!");
             writer.println("   Aqui solo habra UN GANADOR...");
-            writer.println("=========================================");
+            writer.println("===============================================================================");
             writer.println("Espectador: " + id);
             writer.println("Personaje favorito: " + personajeFavorito);
-            writer.println("-----------------------------------------");
+            writer.println("-------------------------------------------------------------------------------");
             writer.println();
         } catch (IOException e) {
             System.err.println("Error al crear la bitacora de " + id + ": " + e.getMessage());

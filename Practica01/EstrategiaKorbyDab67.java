@@ -13,19 +13,19 @@ public class EstrategiaKorbyDab67 implements EstrategiaPelea {
 
     @Override
     public int atacar(Combatiente objetivo) { 
-        int auraObtenida = 1000 + random.nextInt(2001);
+        int auraObtenida = 1000 + random.nextInt(5001);
         System.out.println("OMGGGG ¿Qué está haciendo Korby? \n¿Es eso un Dab? ¿¡Y un 67!?" +
 			   "\nEl poder del Dab67 genera ondas de viento inigualables :O" +
-			   "\nKorby con su gran Dab67 empuja por los aires a: " + objetivo.obtenerNombre());
+			   "\n>> Korby con su gran Dab67 empuja por los aires a: " + objetivo.obtenerNombre());
         System.out.println(VERDE +"+ " + auraObtenida + " de Aura 🗿🔥"+ RESET);
         return auraObtenida; 
     }
 
     @Override
     public int defender(Combatiente atacante) { 
-        int auraPerdida = 500 + random.nextInt(501);
+        int auraPerdida = 500 + random.nextInt(501); // Entre 500 y 1000
 	System.out.println(atacante.obtenerNombre() + "intenta atacar a Korby tiene un Dab67 bajo la manga.");
-        System.out.println("Con el Dab67, Korby logra empujar y disipar el ataque de " + atacante.obtenerNombre());
+        System.out.println(">> Con el Dab67, Korby logra empujar y disipar el ataque de " + atacante.obtenerNombre());
         System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + RESET);
         return auraPerdida; 
     }

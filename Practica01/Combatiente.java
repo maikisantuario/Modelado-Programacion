@@ -21,7 +21,7 @@ public abstract class Combatiente {
      */
     public Combatiente(String nombre, EstrategiaPelea estrategiaBase) {
         this.nombre = nombre;
-        this.aura = 6767;
+        this.aura = 6007;
         this.estrategiaActual = estrategiaBase;
         this.random = new Random();
     }

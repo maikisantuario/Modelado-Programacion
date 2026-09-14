@@ -14,15 +14,15 @@ public class EstrategiaMeganManEspada implements EstrategiaPelea {
     public int atacar(Combatiente objetivo) {
         int danioEspada = 1200 + random.nextInt(801); // Entre 1200 y 2000
         System.out.println("MeganMan desenvaina su espada y corta a " + objetivo.getNombre() + " en un movimiento relampago!");
-        System.out.println(VERDE + "+ " + danioEspada + " de danio ⚔️" + RESET);
+        System.out.println(VERDE + "+ " + danioEspada + " de Aura ⚔️" + RESET);
         return danioEspada;
     }
 
     @Override
     public int defender(Combatiente atacante) {
         int danioReducido = 400 + random.nextInt(201); // Entre 400 y 600
-        System.out.println("MeganMan usa su espada para desviar el ataque de " + atacante.getNombre() + "!");
-        System.out.println(ROJO + "- " + danioReducido + " de danio bloqueado 🛡️" + RESET);
+        System.out.println("MeganMan usa su espada para desviar el ataque de " + atacante.getNombre() + "! 🛡️");
+        System.out.println(ROJO + "- " + danioReducido + " de Aura 🥶💦" + RESET);
         return danioReducido;
     }
 

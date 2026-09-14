@@ -65,7 +65,7 @@ public class ArenaCombate implements Sujeto {
      * @param personaje Combatiente que intenta consumir el objeto.
      */
     public void generarYConsumirObjeto(Combatiente personaje) {
-        ObjetoPoder objeto = new ObjetoPoder(personaje.getNombre(), "Objeto Especial de " + this.nombreArena, personaje.estrategiaActual);
+        ObjetoPoder objeto = new ObjetoPoder(personaje.getNombre(), "Objeto Especial de " + this.nombreArena, personaje.getEstrategiaActual());
         boolean consumido = personaje.consumirObjeto(objeto);
         if (consumido) {
             notificar("¡SITUACION EN ARENA!: " + personaje.getNombre() + " encontro y consumio un objeto de poder en " + this.nombreArena + "!");
@@ -74,22 +74,28 @@ public class ArenaCombate implements Sujeto {
 
     /**
      * Procesa el ataque entre combatientes y notifica la situacion detallada del intercambio.
-     * @param personaje Combatiente atacante.
+     * @param atacante Combatiente atacante.
      * @param defensor Combatiente defensor.
      * @param seDefiende Indica si el defensor usa su defensa.
+     * @param todosLosLuchadores Lista con los 3 combatientes de la pelea.
      */
-    public void procesarAtaque(Combatiente atacante, Combatiente defensor, boolean seDefiende) {
+    public void procesarAtaque(Combatiente atacante, Combatiente defensor, boolean seDefiende, List<Combatiente> todosLosLuchadores) {
         notificar("¡TURNO DE ACCION!: " + atacante.getNombre() + " se prepara para atacar a " + defensor.getNombre() + ".");
 
         int auraGanada = atacante.realizarAtaque(defensor);
-        notificar("Reporte desde " + this.nombreArena + ": " + atacante.getNombre() + " ha generado " + auraGanada + " de Aura 🗿📈.");
+        notificar("Reporte desde " + this.nombreArena + ": " + atacante.getNombre() +
+		  " ha generado " + auraGanada + " de Aura 🗿📈.");
 
         int auraPerdida = defensor.recibirImpacto(atacante, seDefiende);
-        notificar("Reporte desde " + this.nombreArena + ": " + defensor.getNombre() + " ha perdido " + auraPerdida + " de Aura 🫠📉.");
+        notificar("Reporte desde " + this.nombreArena + ": " + defensor.getNombre() + " ha perdido " +
+		  auraPerdida + " de Aura 🫠📉.");
         
         // Notificación de los marcadores de Aura actualizados
-        notificar("Estado de Aura:\n" + atacante.getNombre() + ": " + atacante.getAura() + " pts de Aura 🔥.\n" +
-                  defensor.getNombre() + ": " + defensor.getAura() + " pts de Aura 🔥.");
+	StringBuilder estadoAura = new StringBuilder("Estado de Aura: ");
+	for (Combatiente c : todosLosLuchadores) {
+        estadoAura.append(c.getNombre()).append(": ").append(c.getAura()).append(" pts de Aura 🔥. || ");
+	}
+        notificar(estadoAura.toString().trim());
     }
 
     /**
