@@ -8,8 +8,13 @@ import java.util.Random;
  */
 public class ArenaCombate implements Sujeto {
 
+    /** Lista de observadores registrados en las gradas. */
     protected List<Observador> espectadores;
+    
+    /** Nombre asignado aleatoriamente a la arena. */
     protected String nombreArena;
+    
+    /** Generador de valores aleatorios para la lógica del escenario. */
     protected Random random;
 
     /**
@@ -110,6 +115,10 @@ public class ArenaCombate implements Sujeto {
         }
     }
 
+    /**
+     * Obtiene el nombre de la arena de combate actual.
+     * @return El nombre de la arena.
+     */
     public String getNombreArena() {
         return nombreArena;
     }
