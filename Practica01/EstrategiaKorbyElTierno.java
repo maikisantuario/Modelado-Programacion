@@ -29,7 +29,7 @@ public class EstrategiaKorbyElTierno implements EstrategiaPelea {
     @Override
     public int atacar(Combatiente objetivo) { 
         int auraObtenida = 1000 + random.nextInt(2001);
-        System.out.println("Miren a esa pequeña criatura tan tierna awwww \nMis ojos no pueden ver entre tanta luz de belleza" +
+        System.out.println("Miren a esa pequenia criatura tan tierna awwww \nMis ojos no pueden ver entre tanta luz de belleza" +
                            "\nAWWWWWWWWWW KORBYYYYY" +
                            "\n>> Korby paraliza con ternura a: " + objetivo.obtenerNombre() +
                            " y aprovecha el momento para atacarlos por la espalda.");

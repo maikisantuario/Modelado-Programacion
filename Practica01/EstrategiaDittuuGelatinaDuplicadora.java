@@ -43,7 +43,7 @@ public class EstrategiaDittuuGelatinaDuplicadora implements EstrategiaPelea {
     @Override
     public int defender(Combatiente atacante) {
         int auraPerdida = 1000 + random.nextInt(2001);
-        System.out.println(">> Dittuu usa su clon gelatinoso como escudo señuelo ante la embestida de " + atacante.getNombre() + ".");
+        System.out.println(">> Dittuu usa su clon gelatinoso como escudo senuelo ante la embestida de " + atacante.getNombre() + ".");
         System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + RESET);
         return auraPerdida; 
     }

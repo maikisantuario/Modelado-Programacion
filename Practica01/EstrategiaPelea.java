@@ -9,7 +9,7 @@ public interface EstrategiaPelea {
      * Ejecuta la logica ofensiva y calcula el daño o aura generada al atacar.
      * 
      * @param objetivo El combatiente que recibe el ataque.
-     * @return Los puntos de daño infligidos o el aura obtenida tras el ataque.
+     * @return Los puntos de danio infligidos o el aura obtenida tras el ataque.
      */
     int atacar(Combatiente objetivo);
 

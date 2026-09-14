@@ -28,7 +28,7 @@ public class EstrategiaDittuuBase implements EstrategiaPelea {
     @Override
     public int atacar(Combatiente objetivo) {
         int auraObtenida = 1000 + random.nextInt(2001);
-        System.out.println(">> Dittuu analiza al rival y ejecuta un golpe con precisión contra " + objetivo.obtenerNombre());
+        System.out.println(">> Dittuu analiza al rival y ejecuta un golpe con precision contra " + objetivo.obtenerNombre());
         System.out.println(VERDE + "+ " + auraObtenida + " de Aura 🗿🔥" + RESET);
         return auraObtenida; 
     }

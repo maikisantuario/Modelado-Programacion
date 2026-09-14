@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Clase principal que se encarga de ser el orquestador del programa,
- * concentrándose en la interacción inicial con el usuario, la inicialización 
+ * concentrandose en la interacción inicial con el usuario, la inicialización 
  * de los objetos principales (Arena, Espectadores, Combatientes) y la 
  * ejecución del bucle de simulación del combate.
  */
@@ -30,11 +30,11 @@ public class Main {
     public static final String RESET = "\u001B[0m";
     
     /**
-     * Método principal que inicia la ejecución del programa. 
+     * Metodo principal que inicia la ejecución del programa. 
      * Maneja el registro del usuario, la selección de su luchador favorito, 
      * la configuración del escenario aleatorio y el inicio de la simulación.
      * 
-     * @param args Argumentos de la línea de comandos (no utilizados).
+     * @param args Argumentos de la linea de comandos (no utilizados).
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -61,7 +61,7 @@ public class Main {
                 luchadorFavorito = "Dittuu";
                 System.out.println("\nHas escogido a " + MORADO + "Dittuu\n" +
                                    "Habilidades:\n> ☣️ AgujaToxica\n> 🦠 GelatinaDuplicadora\n> ⛈️ VidaTormentosa\n" +
-                                   "¡Sientan cómo mi aura consume sus esperanzas!\n" + RESET);
+                                   "¡Sientan como mi aura consume sus esperanzas!\n" + RESET);
                 opcionLuchadorValida = true;
                 break;
             case "2":
@@ -79,13 +79,13 @@ public class Main {
                 opcionLuchadorValida = true;
                 break;
             default:
-                System.out.println("Opción no válida. Por favor, seleccione a uno de los 3 luchadores.");
+                System.out.println("Opcion no valida. Por favor, seleccione a uno de los 3 luchadores.");
                 break;
             }
         }
         
         ArenaCombate arena = new ArenaCombate();
-        // Instanciación del usuario como espectador
+        // Instanciacion del usuario como espectador
         Espectador usuario = new Espectador(IDUsuario, luchadorFavorito);
         arena.registrar(usuario);
         
@@ -183,7 +183,7 @@ public class Main {
     }
 
     /**
-     * Configura el escenario de combate 4 generando una asignación completamente 
+     * Configura el escenario de combate 4 generando una asignacion completamente 
      * aleatoria de estrategias para todos los combatientes.
      * 
      * @return Una lista con los combatientes inicializados y sus estrategias aleatorias.
@@ -228,7 +228,7 @@ public class Main {
      * aparición de objetos de poder en la arena.
      * 
      * @param arena El escenario/sujeto que procesa y notifica los eventos.
-     * @param luchadores Lista de combatientes activos en la simulación.
+     * @param luchadores Lista de combatientes activos en la simulacion.
      */
     private static void ejecutarBatalla(ArenaCombate arena, List<Combatiente> luchadores) {
         Random random = new Random();
@@ -258,10 +258,10 @@ public class Main {
 
     /**
      * Selecciona aleatoriamente un combatiente de la lista que aún cuente con aura.
-     * Permite excluir a un luchador específico (útil para no seleccionar al atacante como su propio defensor).
+     * Permite excluir a un luchador específico (util para no seleccionar al atacante como su propio defensor).
      * 
      * @param lista La lista de combatientes disponibles.
-     * @param random Instancia de Random para la selección.
+     * @param random Instancia de Random para la seleccion.
      * @param excluido El combatiente que no debe ser seleccionado (puede ser null).
      * @return El combatiente seleccionado de forma aleatoria.
      */
@@ -276,7 +276,7 @@ public class Main {
     }
     
     /**
-     * Determina qué combatiente finaliza el combate con la mayor cantidad de aura.
+     * Determina que combatiente finaliza el combate con la mayor cantidad de aura.
      * 
      * @param lista La lista de combatientes que participaron en la batalla.
      * @return El objeto Combatiente que resultó ganador de la partida.

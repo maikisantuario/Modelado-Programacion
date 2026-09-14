@@ -20,15 +20,15 @@ public class EstrategiaMeganManMini implements EstrategiaPelea {
     private Random random = new Random();
 
     /**
-     * Realiza un ataque rápido y escurridizo corriendo en círculos y disparando 
+     * Realiza un ataque rápido y escurridizo corriendo en circulos y disparando 
      * pequeñas ráfagas. Genera una ganancia de daño/aura baja, entre 300 y 600.
      * 
-     * @param objetivo El combatiente que recibe las múltiples ráfagas de disparos.
+     * @param objetivo El combatiente que recibe las multiples ráfagas de disparos.
      * @return Los puntos de daño infligidos al objetivo.
      */
     @Override
     public int atacar(Combatiente objetivo) {
-        int danioMini = 300 + random.nextInt(301); // Entre 300 y 600
+        int danioMini = 300 + random.nextInt(301);
         System.out.println("MeganMan saca a su forma Mini y comienza a correr en circulos alrededor de " + objetivo.getNombre() + "!");
         System.out.println(">> ¡PIP PIP PIP! Demasiados disparos, quiere dejar a su oponente como colador!");
         System.out.println(VERDE + "+ " + danioMini + " de danio 🔫" + RESET);
@@ -36,7 +36,7 @@ public class EstrategiaMeganManMini implements EstrategiaPelea {
     }
 
     /**
-     * Defiende a MeganMan utilizando su diminuto tamaño y gran agilidad para 
+     * Defiende a MeganMan utilizando su diminuto tamanio y gran agilidad para 
      * esquivar los ataques enemigos casi por completo. Logra evadir un daño calculado entre 800 y 1200 (Defensa alta).
      * 
      * @param atacante El combatiente que intenta golpear a la forma Mini.

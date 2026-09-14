@@ -96,7 +96,7 @@ public abstract class Combatiente {
             System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + RESET);
         }
 
-        // Se descuenta el aura una sola vez al finalizar el cálculo
+        // Se descuenta el aura una sola vez al finalizar el calculo
         this.aura = Math.max(0, this.aura - auraPerdida);
         return auraPerdida;
     }

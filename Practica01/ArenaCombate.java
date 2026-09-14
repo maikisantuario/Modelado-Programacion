@@ -14,7 +14,7 @@ public class ArenaCombate implements Sujeto {
     /** Nombre asignado aleatoriamente a la arena. */
     protected String nombreArena;
     
-    /** Generador de valores aleatorios para la lógica del escenario. */
+    /** Generador de valores aleatorios para la logica del escenario. */
     protected Random random;
 
     /**
@@ -34,7 +34,7 @@ public class ArenaCombate implements Sujeto {
     private String seleccionarNombreAleatorio() {
         String[] nombres = {
             "Bucle de Aurabytes", 
-            "Cúpula Aurea", 
+            "Cupula Aurea", 
             "Estadio Auralan", 
             "Pumaura Locura en Ciencias",
 	    "La maquina de AuraTuring",
@@ -95,7 +95,7 @@ public class ArenaCombate implements Sujeto {
         notificar("Reporte desde " + this.nombreArena + ": " + defensor.getNombre() + " ha perdido " +
 		  auraPerdida + " de Aura 🫠📉.");
         
-        // Notificación de los marcadores de Aura actualizados
+        // Notificacion de los marcadores de Aura actualizados
 	StringBuilder estadoAura = new StringBuilder("Estado de Aura: ");
 	for (Combatiente c : todosLosLuchadores) {
         estadoAura.append(c.getNombre()).append(": ").append(c.getAura()).append(" pts de Aura 🔥. || ");

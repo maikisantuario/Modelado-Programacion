@@ -29,7 +29,7 @@ public class EstrategiaKorbyDab67 implements EstrategiaPelea {
     @Override
     public int atacar(Combatiente objetivo) { 
         int auraObtenida = 1000 + random.nextInt(5001);
-        System.out.println("OMGGGG ¿Qué está haciendo Korby? \n¿Es eso un Dab? ¿¡Y un 67!?" +
+        System.out.println("OMGGGG ¿Que esta haciendo Korby? \n¿Es eso un Dab? ¿¡Y un 67!?" +
                            "\nEl poder del Dab67 genera ondas de viento inigualables :O" +
                            "\n>> Korby con su gran Dab67 empuja por los aires a: " + objetivo.obtenerNombre());
         System.out.println(VERDE + "+ " + auraObtenida + " de Aura 🗿🔥" + RESET);

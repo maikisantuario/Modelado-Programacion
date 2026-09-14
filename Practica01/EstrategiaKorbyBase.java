@@ -43,7 +43,7 @@ public class EstrategiaKorbyBase implements EstrategiaPelea {
     @Override
     public int defender(Combatiente atacante) {
         int auraPerdida = 1000 + random.nextInt(2001);
-        System.out.println(">> " + atacante.obtenerNombre() + " ataca al pobre Korby y se ve una pequeña lagrima salir de su ojo derecho :(");
+        System.out.println(">> " + atacante.obtenerNombre() + " ataca al pobre Korby y se ve una pequenia lagrima salir de su ojo derecho :(");
         System.out.println(ROJO + "- " + auraPerdida + " de Aura 🥶💦" + RESET);
         return auraPerdida; 
     }
