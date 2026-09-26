@@ -8,7 +8,7 @@ public class PizzaPepperoni extends Pizza {
      * 
      * @param id identificador de la pizza
      * @param nombre nombre de la pizza
-     * @param descripcion descripción de los ingredientes
+     * @param descripcion descripcion de los ingredientes
      * @param precio costo de la pizza
      * @param esVegetariana ¿la pizza es apta para vegetarianos?
      * @param tipoMasa tipo de masa 
@@ -18,18 +18,18 @@ public class PizzaPepperoni extends Pizza {
     }
 
     /**
-     * Implementacion especifica para poner el queso en la pizza.
+     * Implementacion para poner el queso en la pizza.
      */
     @Override
     public void colocarQueso() {
-        System.out.println("  -> Colocando queso mozzarella extra...");
+        System.out.println("4. Colocando queso mozzarella extra...");
     }
 
     /**
-     * Implementación especifica para poner la proteína de la pizza.
+     * Implementacion para poner la proteina de la pizza.
      */
     @Override
     public void colocarProteina() {
-        System.out.println("  -> Colocando rodajas de pepperoni...");
+        System.out.println("6. Colocando muchas rodajas de pepperoni...");
     }
 }
