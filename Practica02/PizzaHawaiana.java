@@ -1,3 +1,8 @@
+/**
+ * Clase para una Pizza con pinia.
+ * Se hereda de la clase abstracta Pizza.
+ */
+
 public class PizzaHawaiana extends Pizza {
     public PizzaHawaiana(int id, String nombre, String descripcion, double precio, boolean esVegetariana, TipoMasa tipoMasa) {
         super(id, nombre, descripcion, precio, esVegetariana, tipoMasa);
