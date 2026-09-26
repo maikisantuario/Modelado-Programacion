@@ -1,80 +1,78 @@
 /**
- * Clase principal para probar el funcionamiento del robot,
- * las pizzas y los helados de la pizzería "El Pequeño Cesarín".
+ * Clase principal para probar el funcionamiento de la pizzería "El Pequeño Cesarín".
  */
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("==================================================");
-        System.out.println("   BIENVENIDO A EL PEQUEÑO CESARÍN - SUCURSAL 1");
+        System.out.println("     BIENVENIDO A EL PEQUEÑO CESARÍN");
         System.out.println("==================================================\n");
 
-        // Instancia del robot
+        // Instancia del robot (inicia dormido)
         Robot robot = new Robot();
 
-        // Intento de interactuar si sigue dormido
+        // Intento de interactuar con el robot cuando sigue dormido
         System.out.println("--- Intentando interactuar con el robot dormido ---");
         robot.confirmar();
 
         // Despertar al robot
-        System.out.println("\n--- Llamando al robot ---");
+        System.out.println("\n--- Despertando al robot ---");
         robot.llamar();
 
-        // Crear la pizza
-        System.out.println("\n--- Seleccionando la Pizza ---");
+        // Crear pizza (Template Method)
+        System.out.println("\n--- Ordenando pizza ---");
         Pizza pizza = new PizzaCarnivora(
-            101, 
+            1, 
             "Pizza Carnívora", 
-            "Masa esponjosa con pepperoni, salchicha italiana y tocino", 
+            "Pepperoni, salchicha italiana y tocino", 
             195.0, 
             false, 
             TipoMasa.AMERICANA
         );
         
-        // Asignar tipo de masa
+        // El cliente indica la masa antes de preparar
         pizza.seleccionarMasa(TipoMasa.AMERICANA);
         robot.ordenarPizza(pizza);
 
-        // Crear el helado y sus extras
-        System.out.println("\n--- Seleccionando el Helado y Tops/Ingredientes Extras ---");
+        // Crear helado con ingredientes extras (Decorator)
+        System.out.println("\n--- Ordenando helado ---");
         Helado helado = new HeladoBase(SaborHelado.CHOCOLATE);
 
-        // Agregar toppings
+        // Agregando ingredientes extra
         helado = new Fresitas(helado);
         helado = new Manguitos(helado);
         helado = new Manguitos(helado); // Segundo manguito
         helado = new ChispasChocolate(helado);
         helado = new Malvaviscos(helado);
 
-        // Validar que no deje meter más de 3 del mismo ingrediente
-        helado = new Manguitos(helado); // Tercer manguito
-        helado = new Manguitos(helado); // Este ya no debería dejarlo agregar
+        // Validar límite de máximo 3 porciones por ingrediente
+        helado = new Manguitos(helado); // Tercer manguito (permitido)
+        helado = new Manguitos(helado); // Cuarto manguito (ya no debe agregarse)
 
-        // Agregar el helado a la orden
         robot.ordenarHelado(helado);
 
-        // Confirmar pedido
-        System.out.println("\n--- Confirmando la Orden ---");
+        // Confirmar la orden
+        System.out.println("\n--- Confirmando la orden ---");
         robot.confirmar();
 
-        // Preparar
-        System.out.println("\n--- Solicitando preparación de la orden ---");
+        // Preparar productos
+        System.out.println("\n--- Preparando la orden ---");
         robot.preparar();
 
-        // Entregar y ticket
-        System.out.println("\n--- Solicitando entrega del pedido ---");
+        // Entregar e imprimir ticket
+        System.out.println("\n--- Entregando la orden ---");
         imprimirTicket(robot);
         robot.entregar();
 
-        // Probar pedir algo cuando vuelve a dormirse
+        // Verificar que el robot volvió a dormirse
         System.out.println("\n--- Intentando ordenar nuevamente sin llamar al robot ---");
         robot.ordenarPizza(pizza);
     }
 
     /**
-     * Imprime el ticket con la orden actual.
+     * Imprime el ticket de compra con el desglose de los productos y el total.
      * 
-     * @param robot El robot con la orden.
+     * @param robot El robot con la orden actual.
      */
     private static void imprimirTicket(Robot robot) {
         System.out.println("\n==================================================");
@@ -85,15 +83,15 @@ public class Main {
         if (robot.getPizzaOrdenada() != null) {
             Pizza p = robot.getPizzaOrdenada();
             System.out.println("PIZZA:");
-            System.out.println("  * " + p.getNombre() + " (" + p.getTipoMasa() + ") - $" + p.getPrecio());
+            System.out.println("  * " + p.getNombre() + " - $" + p.getPrecio());
             total += p.getPrecio();
         }
 
         if (robot.getHeladoOrdenado() != null) {
             Helado h = robot.getHeladoOrdenado();
             System.out.println("HELADO:");
-            System.out.println("  * Detalle: " + h.getDescripcion());
-            System.out.println("  * Costo total helado: $" + h.getPrecio());
+            System.out.println("  * " + h.getDescripcion());
+            System.out.println("  * Precio helado: $" + h.getPrecio());
             total += h.getPrecio();
         }
 
