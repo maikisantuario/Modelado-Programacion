@@ -21,24 +21,16 @@ public class GomitasPanda extends IngredienteExtra {
      */
     @Override
     public String getDescripcion() {
-        if (contarIngrediente("GomitasPanda") < 3) {
-            return heladoDecorado.getDescripcion() + ", Gomitas de Panda";
-        } else {
-            System.out.println("\u001B[31mNo puedes agregar más de 3 porciones de Gomitas.\u001B[0m");
-            return heladoDecorado.getDescripcion();
-        }
+	return heladoDecorado.getDescripcion() + "\n    + Gomitas de Panda      $10.00";
     }
 
     /**
-     * Devuelve el precio total acumulado del helado sumando el costo de las Gomitas ($6.7).
+     * Devuelve el precio total acumulado del helado sumando el costo de las Gomitas ($10.00).
      * 
      * @return El costo total con el extra de Gomitas.
      */
     @Override
     public double getPrecio() {
-        if (contarIngrediente("GomitasPanda") < 3) {
-            return heladoDecorado.getPrecio() + 6.7;
-        }
-        return heladoDecorado.getPrecio();
+            return heladoDecorado.getPrecio() + 10.0;
     }
 }

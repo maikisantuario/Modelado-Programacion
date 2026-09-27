@@ -24,7 +24,7 @@ public abstract class IngredienteExtra implements Helado {
      */
     @Override
     public String getDescripcion() {
-        return heladoDecorado.getDescripcion() + ", con ingrediente(s) extra: ";
+        return heladoDecorado.getDescripcion();
     }
 
     /**

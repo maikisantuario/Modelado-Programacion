@@ -21,12 +21,7 @@ public class Manguitos extends IngredienteExtra {
      */
     @Override
     public String getDescripcion() {
-        if (contarIngrediente("Manguitos") < 3) {
-            return heladoDecorado.getDescripcion() + ", Manguitos";
-        } else {
-            System.out.println("\u001B[31mNo puedes agregar mas de 3 porciones de Manguitos.\u001B[0m");
-            return heladoDecorado.getDescripcion();
-        }
+	return heladoDecorado.getDescripcion() + "\n    + Manguitos             $07.00";
     }
 
     /**
@@ -36,9 +31,6 @@ public class Manguitos extends IngredienteExtra {
      */
     @Override
     public double getPrecio() {
-        if (contarIngrediente("Manguitos") < 3) {
             return heladoDecorado.getPrecio() + 7.0;
-        }
-        return heladoDecorado.getPrecio();
     }
 }

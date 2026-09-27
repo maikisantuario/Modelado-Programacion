@@ -14,31 +14,22 @@ public class GomitasGusano extends IngredienteExtra {
     }
 
     /**
-     * Devuelve la descripción del helado agregando las Gomitas de Gusando,
-     * validando que no se superen las 3 porciones.
+     * Devuelve la descripción del helado agregando las Gomitas de Gusando.
      * 
      * @return La descripción con el ingrediente acumulado.
      */
     @Override
     public String getDescripcion() {
-        if (contarIngrediente("GomitasGusano") < 3) {
-            return heladoDecorado.getDescripcion() + ", Gomitas de Gusano";
-        } else {
-            System.out.println("\u001B[31mNo puedes agregar más de 3 porciones de Gomitas.\u001B[0m");
-            return heladoDecorado.getDescripcion();
-        }
+	return heladoDecorado.getDescripcion() + "\n    + Gomitas de Gusano     $08.00";
     }
 
     /**
-     * Devuelve el precio total acumulado del helado sumando el costo de las Gomitas ($6.7).
+     * Devuelve el precio total acumulado del helado sumando el costo de las Gomitas ($8.0).
      * 
      * @return El costo total con el extra de Gomitas.
      */
     @Override
     public double getPrecio() {
-        if (contarIngrediente("GomitasGusano") < 3) {
-            return heladoDecorado.getPrecio() + 6.7;
-        }
-        return heladoDecorado.getPrecio();
+            return heladoDecorado.getPrecio() + 8.0;
     }
 }

@@ -34,84 +34,84 @@ public class Main {
             String opcion = scanner.nextLine();
 
             switch (opcion) {
-                case "1":
-                    // Despertar al robot automáticamente si está dormido
-                    if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
-                        System.out.println("\n[El robot se ha despertado para atenderte]");
-                        robot.llamar();
-                    }
+	    case "1":
+		// Despertar al robot automáticamente si está dormido
+		if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
+		    System.out.println("\n[El robot se ha despertado para atenderte]");
+		    robot.llamar();
+		}
 
-                    if (robot.getPizzaOrdenada() != null) {
-                        System.out.println("Ya tienes una pizza en la orden. Límite de 1 por cliente.");
-                    } else {
-                        ordenarPizza(scanner, robot);
-                    }
-                    break;
+		if (robot.getPizzaOrdenada() != null) {
+		    System.out.println("Ya tienes una pizza en la orden. Límite de 1 por cliente.");
+		} else {
+		    ordenarPizza(scanner, robot);
+		}
+		break;
                     
-                case "2":
-                    // Despertar al robot automáticamente si está dormido
-                    if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
-                        System.out.println("\n[El robot se ha despertado para atenderte]");
-                        robot.llamar();
-                    }
+	    case "2":
+		// Despertar al robot automáticamente si está dormido
+		if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
+		    System.out.println("\n[El robot se ha despertado para atenderte]");
+		    robot.llamar();
+		}
 
-                    if (robot.getHeladoOrdenado() != null) {
-                        System.out.println("Ya tienes un helado en la orden. Límite de 1 por cliente.");
-                    } else {
-                        ordenarHelado(scanner, robot);
-                    }
-                    break;
+		if (robot.getHeladoOrdenado() != null) {
+		    System.out.println("Ya tienes un helado en la orden. Límite de 1 por cliente.");
+		} else {
+		    ordenarHelado(scanner, robot);
+		}
+		break;
                     
-                case "3":
-                    // Validamos que realmente tenga una orden antes de cobrar
-                    if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-                        System.out.println("\n--- Pagando la orden actual ---");
-                        robot.confirmar(); // Pasa al estado de preparación
+	    case "3":
+		// Validamos que realmente tenga una orden antes de cobrar
+		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
+		    System.out.println("\n--- Pagando la orden actual ---");
+		    robot.confirmar(); // Pasa al estado de preparación
                         
-                        // El robot toma el control absoluto automatizado
-                        System.out.println("\n[El robot está preparando tu orden...]");
-                        robot.preparar(); 
+		    // El robot toma el control absoluto automatizado
+		    System.out.println("\n[El robot está preparando tu orden...]");
+		    robot.preparar(); 
                         
-                        System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
-                        imprimirTicket(robot);
-                        robot.entregar(); // Entrega y regresa a dormir
-                    } else {
-                        System.out.println("Opción no válida.");
-                    }
-                    break;
+		    System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
+		    imprimirTicket(robot);
+		    robot.entregar(); // Entrega y regresa a dormir
+		} else {
+		    System.out.println("Opción no válida.");
+		}
+		break;
 
-                case "4":
-                    System.out.println("\n--- Cancelando orden ---");
-                    robot.cancelar(); // El robot se vuelve a dormir y limpia la orden
-                    break;
+	    case "4":
+		System.out.println("\n--- Cancelando orden ---");
+		robot.cancelar(); // El robot se vuelve a dormir y limpia la orden
+		break;
                     
-                case "5":
-                    // Si el usuario quiere salir, verificamos si dejó una orden pendiente
-                    if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-                        System.out.print("\nTienes una orden en curso. ¿Deseas confirmarla y pagar para recibir tu pedido? (sí/no): ");
-                        String respuesta = scanner.nextLine().trim().toLowerCase();
+	    case "5":
+		// Si el usuario quiere salir, verificamos si dejó una orden pendiente
+		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
+		    System.out.print("\nTienes una orden en curso. ¿Deseas confirmarla y pagar para recibir tu pedido? (sí/no): ");
+		    String respuesta = scanner.nextLine().trim().toLowerCase();
                         
-                        if (respuesta.equals("sí") || respuesta.equals("si")) {
-                            System.out.println("\n--- Confirmando la orden ---");
-                            robot.confirmar(); // Pasa al estado de preparación
+		    if (respuesta.equals("sí") || respuesta.equals("si")) {
+			System.out.println("\n--- Confirmando la orden ---");
+			robot.confirmar(); // Pasa al estado de preparación
                             
-                            // El robot toma el control absoluto automatizado
-                            System.out.println("\n[El robot está preparando tu orden...]");
-                            robot.preparar(); 
+			// El robot toma el control absoluto automatizado
+			System.out.println("\n[El robot está preparando tu orden...]");
+			robot.preparar(); 
                             
-                            System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
-                            imprimirTicket(robot);
-                            robot.entregar(); // Entrega y regresa a dormir
-                        } else {
-                            System.out.println("\n--- Cancelando orden pendiente ---");
-                            robot.cancelar();
-                        }
-                    }
-                    salir = true;
-                    break;
+			System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
+			imprimirTicket(robot);
+			robot.entregar(); // Entrega y regresa a dormir
+		    } else {
+			System.out.println("\n--- Cancelando orden pendiente ---");
+			robot.cancelar();
+		    }
+		}
+		salir = true;
+		break;
                     
-                default:
-                    System.out.println("Opción no válida.");
+	    default:
+		System.out.println("Opción no válida.");
             }
         }
         
@@ -121,7 +121,7 @@ public class Main {
 
     private static void ordenarPizza(Scanner scanner, Robot robot) {
         TipoMasa masa = null;
-        
+       
         // Valida la masa hasta que elija una opción válida
         while (masa == null) {
             System.out.println("\n--- TIPOS DE MASA ---");
@@ -132,11 +132,11 @@ public class Main {
             String masaInput = scanner.nextLine();
             
             switch (masaInput) {
-                case "1": masa = TipoMasa.AMERICANA; break;
-                case "2": masa = TipoMasa.NAPOLITANA; break;
-                case "3": masa = TipoMasa.ROMANA; break;
-                default:
-                    System.out.println("Opción no válida. Debe seleccionar uno de los tipos de masa disponibles.");
+	    case "1": masa = TipoMasa.AMERICANA; break;
+	    case "2": masa = TipoMasa.NAPOLITANA; break;
+	    case "3": masa = TipoMasa.ROMANA; break;
+	    default:
+		System.out.println("Opción no válida. Debe seleccionar uno de los tipos de masa disponibles.");
             }
         }
 
@@ -154,13 +154,13 @@ public class Main {
             String pizzaInput = scanner.nextLine();
 
             switch (pizzaInput) {
-                case "1": pizza = new PizzaCarnivora(1, "Pizza Carnívora", "Pepperoni, salchicha italiana y tocino", 195.0, false, masa); break;
-                case "2": pizza = new PizzaHawaiana(2, "Pizza Hawaiana", "Jamón de pavo y trozos de piña", 150.0, false, masa); break;
-                case "3": pizza = new PizzaMargarita(3, "Pizza Margarita", "Queso mozzarella fresco y rodajas de tomate", 130.0, true, masa); break;
-                case "4": pizza = new PizzaMexicana(4, "Pizza Mexicana", "Carne de res, chorizo y chile", 170.0, false, masa); break;
-                case "5": pizza = new PizzaPepperoni(5, "Pizza Pepperoni", "Muchas rodajas de pepperoni", 140.0, false, masa); break;
-                default: 
-                    System.out.println("Opción no válida. Debe seleccionar una de las especialidades disponibles.");
+	    case "1": pizza = new PizzaCarnivora(1, "Pizza Carnívora", "Pepperoni, salchicha italiana y tocino", 195.0, false, masa); break;
+	    case "2": pizza = new PizzaHawaiana(2, "Pizza Hawaiana", "Jamón de pavo y trozos de piña", 150.0, false, masa); break;
+	    case "3": pizza = new PizzaMargarita(3, "Pizza Margarita", "Queso mozzarella fresco y rodajas de tomate", 130.0, true, masa); break;
+	    case "4": pizza = new PizzaMexicana(4, "Pizza Mexicana", "Carne de res, chorizo y chile", 170.0, false, masa); break;
+	    case "5": pizza = new PizzaPepperoni(5, "Pizza Pepperoni", "Muchas rodajas de pepperoni", 140.0, false, masa); break;
+	    default: 
+		System.out.println("Opción no válida. Debe seleccionar una de las especialidades disponibles.");
             }
         }
         
@@ -182,11 +182,11 @@ public class Main {
             String saborInput = scanner.nextLine();
 
             switch (saborInput) {
-                case "1": helado = new HeladoBase(SaborHelado.CHOCOLATE); break;
-                case "2": helado = new HeladoBase(SaborHelado.VAINILLA); break;
-                case "3": helado = new HeladoBase(SaborHelado.FRESA); break;
-                default: 
-                    System.out.println("Opción no válida. Debe seleccionar uno de los 3 sabores disponibles.");
+	    case "1": helado = new HeladoBase(SaborHelado.CHOCOLATE); break;
+	    case "2": helado = new HeladoBase(SaborHelado.VAINILLA); break;
+	    case "3": helado = new HeladoBase(SaborHelado.FRESA); break;
+	    default: 
+		System.out.println("Opción no válida. Debe seleccionar uno de los 3 sabores disponibles.");
             }
         }
 
@@ -216,71 +216,103 @@ public class Main {
             String extra = scanner.nextLine().trim();
             
             switch (extra) {
-                case "1": 
-                    if (c1 < 4) {
-                        helado = new Fresitas(helado); System.out.println("-> Fresitas agregadas."); c1++; extrasAgregados++; 
-                        if (c1 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "2": 
-                    if (c2 < 4) {
-                        helado = new Manguitos(helado); System.out.println("-> Manguitos agregados."); c2++; extrasAgregados++; 
-                        if (c2 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "3": 
-                    if (c3 < 4) {
-                        helado = new ChispasChocolate(helado); System.out.println("-> Chispas de chocolate agregadas."); c3++; extrasAgregados++; 
-                        if (c3 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "4": 
-                    if (c4 < 4) {
-                        helado = new Malvaviscos(helado); System.out.println("-> Malvaviscos agregados."); c4++; extrasAgregados++; 
-                        if (c4 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "5": 
-                    if (c5 < 4) {
-                        helado = new Kiwis(helado); System.out.println("-> Kiwis agregados."); c5++; extrasAgregados++; 
-                        if (c5 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "6": 
-                    if (c6 < 4) {
-                        helado = new GomitasGusano(helado); System.out.println("-> Gomitas de gusano agregadas."); c6++; extrasAgregados++; 
-                        if (c6 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "7": 
-                    if (c7 < 4) {
-                        helado = new GomitasPanda(helado); System.out.println("-> Gomitas de panda agregadas."); c7++; extrasAgregados++; 
-                        if (c7 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "8": 
-                    if (c8 < 4) {
-                        helado = new GomitasAro(helado); System.out.println("-> Gomitas de aro agregadas."); c8++; extrasAgregados++; 
-                        if (c8 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
-                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
-                    }
-                    break;
-                case "9": 
-                    if (extrasAgregados > 0) {
-                        agregando = false;
-                    } else {
-                        System.out.println("Opción no válida.");
-                    }
-                    break;
-                default: 
-                    System.out.println("Opción no válida.");
+	    case "1":
+		if (c1 < 3) {
+		helado = new Fresitas(helado);
+		System.out.println("-> Fresitas agregadas.");
+		c1++;
+		extrasAgregados++;
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "2":
+		if (c2 < 3) {
+		helado = new Manguitos(helado);
+		System.out.println("-> Manguitos agregados.");
+		c2++;
+		extrasAgregados++;
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "3":
+		if (c3 < 3) {
+		helado = new ChispasChocolate(helado);
+		System.out.println("-> Chispas de chocolate agregadas.");
+		c3++;
+		extrasAgregados++;
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "4":
+		if (c4 < 3) {
+		helado = new Malvaviscos(helado);
+		System.out.println("-> Malvaviscos agregados.");
+		c4++;
+		extrasAgregados++; 
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "5":
+		if (c5 < 3) {
+		helado = new Kiwis(helado);
+		System.out.println("-> Kiwis agregados.");
+		c5++;
+		extrasAgregados++; 
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "6":
+		if (c6 < 3) {
+		helado = new GomitasGusano(helado);
+		System.out.println("-> Gomitas de gusano agregadas.");
+		c6++;
+		extrasAgregados++;
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "7":
+		if (c7 < 3) {
+		helado = new GomitasPanda(helado);
+		System.out.println("-> Gomitas de panda agregadas.");
+		c7++;
+		extrasAgregados++;
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "8":
+		if (c8 < 3) {
+		helado = new GomitasAro(helado);
+		System.out.println("-> Gomitas de aro agregadas.");
+		c8++;
+		extrasAgregados++;
+		} else {
+		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
+		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		}
+		break;
+	    case "9": 
+		if (extrasAgregados > 0) {
+		    agregando = false;
+		} else {
+		    System.out.println("Opción no válida.");
+		}
+		break;
+	    default: 
+		System.out.println("Opción no válida.");
             }
         }
         

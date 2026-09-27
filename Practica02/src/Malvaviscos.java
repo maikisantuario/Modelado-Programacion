@@ -20,7 +20,7 @@ public class Malvaviscos extends IngredienteExtra {
      */
     @Override
     public String getDescripcion() {
-        return heladoDecorado.getDescripcion() + ", Malvaviscos";
+	return heladoDecorado.getDescripcion() + "\n    + Malvaviscos           $10.00";
     }
 
     /**
@@ -30,6 +30,6 @@ public class Malvaviscos extends IngredienteExtra {
      */
     @Override
     public double getPrecio() {
-        return heladoDecorado.getPrecio() + 10.0; // Costo extra de los malvaviscos
+	return heladoDecorado.getPrecio() + 10.0; // Costo extra de los malvaviscos
     }
 }

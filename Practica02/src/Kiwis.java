@@ -14,19 +14,13 @@ public class Kiwis extends IngredienteExtra {
     }
 
     /**
-     * Devuelve la descripción del helado agregando los Kiwis,
-     * validando que no se superen las 3 porciones.
+     * Devuelve la descripción del helado agregando los Kiwis.
      * 
      * @return La descripción con el ingrediente acumulado.
      */
     @Override
     public String getDescripcion() {
-        if (contarIngrediente("Kiwis") < 3) {
-            return heladoDecorado.getDescripcion() + ", Kiwis";
-        } else {
-            System.out.println("\u001B[31mNo puedes agregar mas de 3 porciones de Kiwis.\u001B[0m");
-            return heladoDecorado.getDescripcion();
-        }
+	return heladoDecorado.getDescripcion() + "\n    + Kiwis                 $07.00";
     }
 
     /**
@@ -36,9 +30,6 @@ public class Kiwis extends IngredienteExtra {
      */
     @Override
     public double getPrecio() {
-        if (contarIngrediente("Kiwis") < 3) {
             return heladoDecorado.getPrecio() + 7.0;
-        }
-        return heladoDecorado.getPrecio();
     }
 }

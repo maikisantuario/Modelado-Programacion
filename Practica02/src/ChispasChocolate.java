@@ -20,7 +20,7 @@ public class ChispasChocolate extends IngredienteExtra {
      */
     @Override
     public String getDescripcion() {
-        return heladoDecorado.getDescripcion() + ", Chispas de Chocolate";
+	return heladoDecorado.getDescripcion() + "\n    + Chispas de Chocolate  $12.00";
     }
 
     /**

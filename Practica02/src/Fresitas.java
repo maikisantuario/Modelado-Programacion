@@ -21,12 +21,7 @@ public class Fresitas extends IngredienteExtra {
      */
     @Override
     public String getDescripcion() {
-        if (contarIngrediente("Fresitas") < 3) {
-            return heladoDecorado.getDescripcion() + ", Fresitas";
-        } else {
-            System.out.println("\u001B[31mNo puedes agregar mas de 3 porciones de Fresitas.\u001B[0m");
-            return heladoDecorado.getDescripcion();
-        }
+	return heladoDecorado.getDescripcion() + "\n    + Fresitas              $07.00";		
     }
 
     /**
@@ -36,9 +31,6 @@ public class Fresitas extends IngredienteExtra {
      */
     @Override
     public double getPrecio() {
-        if (contarIngrediente("Fresitas") < 3) {
             return heladoDecorado.getPrecio() + 7.0;
-        }
-        return heladoDecorado.getPrecio();
     }
 }
