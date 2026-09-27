@@ -20,15 +20,16 @@ public class Main {
             System.out.println("\n--- MENÚ ---");
             System.out.println("1. Ordenar Pizza (Máximo 1)");
             System.out.println("2. Ordenar Helado (Máximo 1)");
+
+	    // Las opciones de cancelar y salir aparecen siempre
+            System.out.println("3. Cancelar orden");
+            System.out.println("4. Salir de la sucursal");
             
-            // La opción de pagar solo aparece si hay algo en la orden
+            // La opción de pagar solo aparece al final si hay algo en la orden
             if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-                System.out.println("3. Pagar orden actual");
+                System.out.println("5. Pagar orden actual");
             }
             
-            // Las opciones de cancelar y salir aparecen siempre
-            System.out.println("4. Cancelar orden");
-            System.out.println("5. Salir de la sucursal");
             System.out.print("Elige una opción: ");
             
             String opcion = scanner.nextLine();
@@ -61,31 +62,13 @@ public class Main {
 		    ordenarHelado(scanner, robot);
 		}
 		break;
-                    
+		
 	    case "3":
-		// Validamos que realmente tenga una orden antes de cobrar
-		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-		    System.out.println("\n--- Pagando la orden actual ---");
-		    robot.confirmar(); // Pasa al estado de preparación
-                        
-		    // El robot toma el control absoluto automatizado
-		    System.out.println("\n[El robot está preparando tu orden...]");
-		    robot.preparar(); 
-                        
-		    System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
-		    imprimirTicket(robot);
-		    robot.entregar(); // Entrega y regresa a dormir
-		} else {
-		    System.out.println("Opción no válida.");
-		}
-		break;
-
-	    case "4":
 		System.out.println("\n--- Cancelando orden ---");
 		robot.cancelar(); // El robot se vuelve a dormir y limpia la orden
 		break;
                     
-	    case "5":
+	    case "4":
 		// Si el usuario quiere salir, verificamos si dejó una orden pendiente
 		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
 		    System.out.print("\nTienes una orden en curso. ¿Deseas confirmarla y pagar para recibir tu pedido? (sí/no): ");
@@ -108,6 +91,24 @@ public class Main {
 		    }
 		}
 		salir = true;
+		break;
+
+	    case "5":
+		// Validamos que realmente tenga una orden antes de cobrar
+		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
+		    System.out.println("\n--- Pagando la orden actual ---");
+		    robot.confirmar(); // Pasa al estado de preparación
+                        
+		    // El robot toma el control absoluto automatizado
+		    System.out.println("\n[El robot está preparando tu orden...]");
+		    robot.preparar(); 
+                        
+		    System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
+		    imprimirTicket(robot);
+		    robot.entregar(); // Entrega y regresa a dormir
+		} else {
+		    System.out.println("Opción no válida.");
+		}
 		break;
                     
 	    default:
