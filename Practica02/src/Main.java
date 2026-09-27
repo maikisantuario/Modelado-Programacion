@@ -20,8 +20,15 @@ public class Main {
             System.out.println("\n--- MENÚ ---");
             System.out.println("1. Ordenar Pizza (Máximo 1)");
             System.out.println("2. Ordenar Helado (Máximo 1)");
-            System.out.println("3. Cancelar orden");
-            System.out.println("4. Salir de la sucursal");
+            
+            // La opción de pagar solo aparece si hay algo en la orden
+            if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
+                System.out.println("3. Pagar orden actual");
+            }
+            
+            // Las opciones de cancelar y salir aparecen siempre
+            System.out.println("4. Cancelar orden");
+            System.out.println("5. Salir de la sucursal");
             System.out.print("Elige una opción: ");
             
             String opcion = scanner.nextLine();
@@ -56,11 +63,29 @@ public class Main {
                     break;
                     
                 case "3":
+                    // Validamos que realmente tenga una orden antes de cobrar
+                    if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
+                        System.out.println("\n--- Pagando la orden actual ---");
+                        robot.confirmar(); // Pasa al estado de preparación
+                        
+                        // El robot toma el control absoluto automatizado
+                        System.out.println("\n[El robot está preparando tu orden...]");
+                        robot.preparar(); 
+                        
+                        System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
+                        imprimirTicket(robot);
+                        robot.entregar(); // Entrega y regresa a dormir
+                    } else {
+                        System.out.println("Opción no válida.");
+                    }
+                    break;
+
+                case "4":
                     System.out.println("\n--- Cancelando orden ---");
                     robot.cancelar(); // El robot se vuelve a dormir y limpia la orden
                     break;
                     
-                case "4":
+                case "5":
                     // Si el usuario quiere salir, verificamos si dejó una orden pendiente
                     if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
                         System.out.print("\nTienes una orden en curso. ¿Deseas confirmarla y pagar para recibir tu pedido? (sí/no): ");
@@ -116,14 +141,15 @@ public class Main {
         }
 
         Pizza pizza = null;
+        
         // Valida la especialidad hasta que elija una opción valida
         while (pizza == null) {
             System.out.println("\n--- ESPECIALIDADES DE PIZZA ---");
-            System.out.println("1. Carnívora");
-            System.out.println("2. Hawaiana");
-            System.out.println("3. Margarita");
-            System.out.println("4. Mexicana");
-            System.out.println("5. Pepperoni");
+            System.out.println("1. Carnívora (Ingredientes: Pepperoni, salchicha italiana y tocino)");
+            System.out.println("2. Hawaiana (Ingredientes: Jamón de pavo y trozos de piña)");
+            System.out.println("3. Margarita (Ingredientes: Queso mozzarella fresco y rodajas de tomate)");
+            System.out.println("4. Mexicana (Ingredientes: Carne de res, chorizo y chile)");
+            System.out.println("5. Pepperoni (Ingredientes: Muchas rodajas de pepperoni)");
             System.out.print("Elige tu pizza: ");
             String pizzaInput = scanner.nextLine();
 
@@ -168,8 +194,11 @@ public class Main {
         boolean agregando = true;
         int extrasAgregados = 0;
         
+        // Contadores individuales
+        int c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0;
+        
         while (agregando) {
-            System.out.println("\n--- INGREDIENTES EXTRAS (Máximo 3 por ingrediente) ---");
+            System.out.println("\n--- INGREDIENTES EXTRAS (Máximo 3 en total) ---");
             System.out.println("1. Fresitas");
             System.out.println("2. Manguitos");
             System.out.println("3. Chispas de Chocolate");
@@ -187,14 +216,62 @@ public class Main {
             String extra = scanner.nextLine().trim();
             
             switch (extra) {
-                case "1": helado = new Fresitas(helado); System.out.println("-> Fresitas agregadas."); extrasAgregados++; break;
-                case "2": helado = new Manguitos(helado); System.out.println("-> Manguitos agregados."); extrasAgregados++; break;
-                case "3": helado = new ChispasChocolate(helado); System.out.println("-> Chispas de chocolate agregadas."); extrasAgregados++; break;
-                case "4": helado = new Malvaviscos(helado); System.out.println("-> Malvaviscos agregados."); extrasAgregados++; break;
-                case "5": helado = new Kiwis(helado); System.out.println("-> Kiwis agregados."); extrasAgregados++; break;
-                case "6": helado = new GomitasGusano(helado); System.out.println("-> Gomitas de gusano agregadas."); extrasAgregados++; break;
-                case "7": helado = new GomitasPanda(helado); System.out.println("-> Gomitas de panda agregadas."); extrasAgregados++; break;
-                case "8": helado = new GomitasAro(helado); System.out.println("-> Gomitas de aro agregadas."); extrasAgregados++; break;
+                case "1": 
+                    if (c1 < 4) {
+                        helado = new Fresitas(helado); System.out.println("-> Fresitas agregadas."); c1++; extrasAgregados++; 
+                        if (c1 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "2": 
+                    if (c2 < 4) {
+                        helado = new Manguitos(helado); System.out.println("-> Manguitos agregados."); c2++; extrasAgregados++; 
+                        if (c2 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "3": 
+                    if (c3 < 4) {
+                        helado = new ChispasChocolate(helado); System.out.println("-> Chispas de chocolate agregadas."); c3++; extrasAgregados++; 
+                        if (c3 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "4": 
+                    if (c4 < 4) {
+                        helado = new Malvaviscos(helado); System.out.println("-> Malvaviscos agregados."); c4++; extrasAgregados++; 
+                        if (c4 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "5": 
+                    if (c5 < 4) {
+                        helado = new Kiwis(helado); System.out.println("-> Kiwis agregados."); c5++; extrasAgregados++; 
+                        if (c5 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "6": 
+                    if (c6 < 4) {
+                        helado = new GomitasGusano(helado); System.out.println("-> Gomitas de gusano agregadas."); c6++; extrasAgregados++; 
+                        if (c6 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "7": 
+                    if (c7 < 4) {
+                        helado = new GomitasPanda(helado); System.out.println("-> Gomitas de panda agregadas."); c7++; extrasAgregados++; 
+                        if (c7 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
+                case "8": 
+                    if (c8 < 4) {
+                        helado = new GomitasAro(helado); System.out.println("-> Gomitas de aro agregadas."); c8++; extrasAgregados++; 
+                        if (c8 == 3) { System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente."); agregando = false; }
+                        else if (extrasAgregados == 3) { System.out.println("Ya alcanzó el límite máximo de 3 porciones en total."); agregando = false; }
+                    }
+                    break;
                 case "9": 
                     if (extrasAgregados > 0) {
                         agregando = false;
@@ -221,6 +298,8 @@ public class Main {
             Pizza p = robot.getPizzaOrdenada();
             System.out.println("PIZZA:");
             System.out.println("  * " + p.getNombre() + " - $" + p.getPrecio());
+            // Mostramos los ingredientes específicos en el ticket final
+            System.out.println("  * Ingredientes: " + p.getDescripcion());
             total += p.getPrecio();
         }
 
