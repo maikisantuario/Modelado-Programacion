@@ -1,79 +1,216 @@
+import java.util.Scanner;
+
 /**
  * Clase principal para probar el funcionamiento de la pizzería "El Pequeño Cesarín".
+ * El robot automatiza por completo sus estados y procesos internos.
  */
+
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Robot robot = new Robot();
+        boolean salir = false;
+
         System.out.println("==================================================");
         System.out.println("     BIENVENIDO A EL PEQUEÑO CESARÍN");
-        System.out.println("==================================================\n");
+        System.out.println("==================================================");
 
-        // Instancia del robot (inicia dormido)
-        Robot robot = new Robot();
+        while (!salir) {
+            System.out.println("\n--- MENÚ ---");
+            System.out.println("1. Ordenar Pizza (Máximo 1)");
+            System.out.println("2. Ordenar Helado (Máximo 1)");
+            System.out.println("3. Cancelar orden");
+            System.out.println("4. Salir de la sucursal");
+            System.out.print("Elige una opción: ");
+            
+            String opcion = scanner.nextLine();
 
-        // Intento de interactuar con el robot cuando sigue dormido
-        System.out.println("--- Intentando interactuar con el robot dormido ---");
-        robot.confirmar();
+            switch (opcion) {
+                case "1":
+                    // Despertar al robot automáticamente si está dormido
+                    if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
+                        System.out.println("\n[El robot se ha despertado para atenderte]");
+                        robot.llamar();
+                    }
 
-        // Despertar al robot
-        System.out.println("\n--- Despertando al robot ---");
-        robot.llamar();
+                    if (robot.getPizzaOrdenada() != null) {
+                        System.out.println("Ya tienes una pizza en la orden. Límite de 1 por cliente.");
+                    } else {
+                        ordenarPizza(scanner, robot);
+                    }
+                    break;
+                    
+                case "2":
+                    // Despertar al robot automáticamente si está dormido
+                    if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
+                        System.out.println("\n[El robot se ha despertado para atenderte]");
+                        robot.llamar();
+                    }
 
-        // Crear pizza (Template Method)
-        System.out.println("\n--- Ordenando pizza ---");
-        Pizza pizza = new PizzaCarnivora(
-            1, 
-            "Pizza Carnívora", 
-            "Pepperoni, salchicha italiana y tocino", 
-            195.0, 
-            false, 
-            TipoMasa.AMERICANA
-        );
+                    if (robot.getHeladoOrdenado() != null) {
+                        System.out.println("Ya tienes un helado en la orden. Límite de 1 por cliente.");
+                    } else {
+                        ordenarHelado(scanner, robot);
+                    }
+                    break;
+                    
+                case "3":
+                    System.out.println("\n--- Cancelando orden ---");
+                    robot.cancelar(); // El robot se vuelve a dormir y limpia la orden
+                    break;
+                    
+                case "4":
+                    // Si el usuario quiere salir, verificamos si dejó una orden pendiente
+                    if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
+                        System.out.print("\nTienes una orden en curso. ¿Deseas confirmarla y pagar para recibir tu pedido? (sí/no): ");
+                        String respuesta = scanner.nextLine().trim().toLowerCase();
+                        
+                        if (respuesta.equals("sí") || respuesta.equals("si")) {
+                            System.out.println("\n--- Confirmando la orden ---");
+                            robot.confirmar(); // Pasa al estado de preparación
+                            
+                            // El robot toma el control absoluto automatizado
+                            System.out.println("\n[El robot está preparando tu orden...]");
+                            robot.preparar(); 
+                            
+                            System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
+                            imprimirTicket(robot);
+                            robot.entregar(); // Entrega y regresa a dormir
+                        } else {
+                            System.out.println("\n--- Cancelando orden pendiente ---");
+                            robot.cancelar();
+                        }
+                    }
+                    salir = true;
+                    break;
+                    
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
         
-        // El cliente indica la masa antes de preparar
-        pizza.seleccionarMasa(TipoMasa.AMERICANA);
-        robot.ordenarPizza(pizza);
-
-        // Crear helado con ingredientes extras (Decorator)
-        System.out.println("\n--- Ordenando helado ---");
-        Helado helado = new HeladoBase(SaborHelado.CHOCOLATE);
-
-        // Agregando ingredientes extra
-        helado = new Fresitas(helado);
-        helado = new Manguitos(helado);
-        helado = new Manguitos(helado); // Segundo manguito
-        helado = new ChispasChocolate(helado);
-        helado = new Malvaviscos(helado);
-
-        // Validar límite de máximo 3 porciones por ingrediente
-        helado = new Manguitos(helado); // Tercer manguito (permitido)
-        helado = new Manguitos(helado); // Cuarto manguito (ya no debe agregarse)
-
-        robot.ordenarHelado(helado);
-
-        // Confirmar la orden
-        System.out.println("\n--- Confirmando la orden ---");
-        robot.confirmar();
-
-        // Preparar productos
-        System.out.println("\n--- Preparando la orden ---");
-        robot.preparar();
-
-        // Entregar e imprimir ticket
-        System.out.println("\n--- Entregando la orden ---");
-        imprimirTicket(robot);
-        robot.entregar();
-
-        // Verificar que el robot volvió a dormirse
-        System.out.println("\n--- Intentando ordenar nuevamente sin llamar al robot ---");
-        robot.ordenarPizza(pizza);
+        System.out.println("\n¡Gracias por visitar El Pequeño Cesarín! Vuelve pronto.");
+        scanner.close();
     }
 
-    /**
-     * Imprime el ticket de compra con el desglose de los productos y el total.
-     * 
-     * @param robot El robot con la orden actual.
-     */
+    private static void ordenarPizza(Scanner scanner, Robot robot) {
+        TipoMasa masa = null;
+        
+        // Valida la masa hasta que elija una opción válida
+        while (masa == null) {
+            System.out.println("\n--- TIPOS DE MASA ---");
+            System.out.println("1. Americana");
+            System.out.println("2. Napolitana");
+            System.out.println("3. Romana");
+            System.out.print("Elige tu masa: ");
+            String masaInput = scanner.nextLine();
+            
+            switch (masaInput) {
+                case "1": masa = TipoMasa.AMERICANA; break;
+                case "2": masa = TipoMasa.NAPOLITANA; break;
+                case "3": masa = TipoMasa.ROMANA; break;
+                default:
+                    System.out.println("Opción no válida. Debe seleccionar uno de los tipos de masa disponibles.");
+            }
+        }
+
+        Pizza pizza = null;
+        // Valida la especialidad hasta que elija una opción valida
+        while (pizza == null) {
+            System.out.println("\n--- ESPECIALIDADES DE PIZZA ---");
+            System.out.println("1. Carnívora");
+            System.out.println("2. Hawaiana");
+            System.out.println("3. Margarita");
+            System.out.println("4. Mexicana");
+            System.out.println("5. Pepperoni");
+            System.out.print("Elige tu pizza: ");
+            String pizzaInput = scanner.nextLine();
+
+            switch (pizzaInput) {
+                case "1": pizza = new PizzaCarnivora(1, "Pizza Carnívora", "Pepperoni, salchicha italiana y tocino", 195.0, false, masa); break;
+                case "2": pizza = new PizzaHawaiana(2, "Pizza Hawaiana", "Jamón de pavo y trozos de piña", 150.0, false, masa); break;
+                case "3": pizza = new PizzaMargarita(3, "Pizza Margarita", "Queso mozzarella fresco y rodajas de tomate", 130.0, true, masa); break;
+                case "4": pizza = new PizzaMexicana(4, "Pizza Mexicana", "Carne de res, chorizo y chile", 170.0, false, masa); break;
+                case "5": pizza = new PizzaPepperoni(5, "Pizza Pepperoni", "Muchas rodajas de pepperoni", 140.0, false, masa); break;
+                default: 
+                    System.out.println("Opción no válida. Debe seleccionar una de las especialidades disponibles.");
+            }
+        }
+        
+        pizza.seleccionarMasa(masa);
+        robot.ordenarPizza(pizza);
+        System.out.println("¡Pizza agregada a la orden!");
+    }
+
+    private static void ordenarHelado(Scanner scanner, Robot robot) {
+        Helado helado = null;
+        
+        // Verifica que elija uno de los 3 sabores base válido
+        while (helado == null) {
+            System.out.println("\n--- SABORES DE HELADO ---");
+            System.out.println("1. Chocolate");
+            System.out.println("2. Vainilla");
+            System.out.println("3. Fresa");
+            System.out.print("Elige el sabor base: ");
+            String saborInput = scanner.nextLine();
+
+            switch (saborInput) {
+                case "1": helado = new HeladoBase(SaborHelado.CHOCOLATE); break;
+                case "2": helado = new HeladoBase(SaborHelado.VAINILLA); break;
+                case "3": helado = new HeladoBase(SaborHelado.FRESA); break;
+                default: 
+                    System.out.println("Opción no válida. Debe seleccionar uno de los 3 sabores disponibles.");
+            }
+        }
+
+        // Ciclo para agregar extras; la opción de terminar solo sale si ya escogió un ingrediente
+        boolean agregando = true;
+        int extrasAgregados = 0;
+        
+        while (agregando) {
+            System.out.println("\n--- INGREDIENTES EXTRAS (Máximo 3 por ingrediente) ---");
+            System.out.println("1. Fresitas");
+            System.out.println("2. Manguitos");
+            System.out.println("3. Chispas de Chocolate");
+            System.out.println("4. Malvaviscos");
+            System.out.println("5. Kiwis");
+            System.out.println("6. Gomitas de gusano");
+            System.out.println("7. Gomitas de panda");
+            System.out.println("8. Gomitas de aro");
+            
+            if (extrasAgregados > 0) {
+                System.out.println("9. Terminar de agregar ingredientes");
+            }
+            
+            System.out.print("Elige una opción: ");
+            String extra = scanner.nextLine().trim();
+            
+            switch (extra) {
+                case "1": helado = new Fresitas(helado); System.out.println("-> Fresitas agregadas."); extrasAgregados++; break;
+                case "2": helado = new Manguitos(helado); System.out.println("-> Manguitos agregados."); extrasAgregados++; break;
+                case "3": helado = new ChispasChocolate(helado); System.out.println("-> Chispas de chocolate agregadas."); extrasAgregados++; break;
+                case "4": helado = new Malvaviscos(helado); System.out.println("-> Malvaviscos agregados."); extrasAgregados++; break;
+                case "5": helado = new Kiwis(helado); System.out.println("-> Kiwis agregados."); extrasAgregados++; break;
+                case "6": helado = new GomitasGusano(helado); System.out.println("-> Gomitas de gusano agregadas."); extrasAgregados++; break;
+                case "7": helado = new GomitasPanda(helado); System.out.println("-> Gomitas de panda agregadas."); extrasAgregados++; break;
+                case "8": helado = new GomitasAro(helado); System.out.println("-> Gomitas de aro agregadas."); extrasAgregados++; break;
+                case "9": 
+                    if (extrasAgregados > 0) {
+                        agregando = false;
+                    } else {
+                        System.out.println("Opción no válida.");
+                    }
+                    break;
+                default: 
+                    System.out.println("Opción no válida.");
+            }
+        }
+        
+        robot.ordenarHelado(helado);
+        System.out.println("¡Helado agregado a la orden!");
+    }
+
     private static void imprimirTicket(Robot robot) {
         System.out.println("\n==================================================");
         System.out.println("           TICKET DE COMPRA - EL PEQUEÑO CESARÍN");
