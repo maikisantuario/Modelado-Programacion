@@ -3,7 +3,7 @@
  * Define el sabor inicial y proporciona los métodos base para obtener
  * la descripción y el precio antes de agregar ingredientes extra.
  */
-public class HeladoBase {
+public class HeladoBase implements Helado {
     
     public SaborHelado sabor;
 

@@ -16,7 +16,7 @@ public class EstadoDormido implements EstadoRobot {
     @Override
     public void llamar() {
 	System.out.println("Robot despertando... Hola! En que puedo ayudarte?");
-	robot.setEstado(new EstadoAtendiendo);
+	robot.setEstado(new EstadoAtendiendo(robot));
     }
 
     @Override
