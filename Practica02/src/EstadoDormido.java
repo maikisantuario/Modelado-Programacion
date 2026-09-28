@@ -21,31 +21,31 @@ public class EstadoDormido implements EstadoRobot {
 
     @Override
     public void ordenarPizza(Pizza pizza) {
-        System.out.println("El robot esta dormido. Primero debes llamarlo.");
+        System.out.println("\nEl robot esta dormido. Primero debes llamarlo.");
     }
 
     @Override
     public void ordenarHelado(Helado helado) {
-        System.out.println("El robot esta dormido. Primero debes llamarlo.");
+        System.out.println("\nEl robot esta dormido. Primero debes llamarlo.");
     }
 
     @Override
     public void cancelar() {
-        System.out.println("El robot esta dormido, no hay orden que cancelar.");
+        System.out.println("\nEl robot esta dormido, no hay orden que cancelar.");
     }
     
     @Override
     public void confirmar() {
-        System.out.println("El robot esta dormido, no hay orden que confirmar.");
+        System.out.println("\nEl robot esta dormido, no hay orden que confirmar.");
     }
 
     @Override
     public void preparar() {
-        System.out.println("El robot esta dormido, no puede preparar nada.");
+        System.out.println("\nEl robot esta dormido, no puede preparar nada.");
     }
 
     @Override
     public void entregar() {
-        System.out.println("El robot esta dormido, no hay orden que entregar.");
+        System.out.println("\nEl robot esta dormido, no hay orden que entregar.");
     }
 }

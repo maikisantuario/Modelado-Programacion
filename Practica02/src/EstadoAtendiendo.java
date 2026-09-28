@@ -15,24 +15,24 @@ public class EstadoAtendiendo implements EstadoRobot {
 
     @Override
     public void llamar() {
-        System.out.println("El robot ya te esta atendiendo.");
+        System.out.println("\nEl robot ya te esta atendiendo.");
     }
 
     @Override
     public void ordenarPizza(Pizza pizza) {
         robot.setPizzaOrdenada(pizza);
-        System.out.println("Pizza agregada al pedido: " + pizza.getDescripcion());
+        System.out.println("\nPizza agregada al pedido: " + pizza.getDescripcion());
     }
 
     @Override
     public void ordenarHelado(Helado helado) {
         robot.setHeladoOrdenado(helado);
-        System.out.println("Helado agregado al pedido: " + helado.getDescripcion());
+        System.out.println("\nHelado agregado al pedido: " + helado.getDescripcion());
     }
 
     @Override
     public void cancelar() {
-        System.out.println("Orden cancelada. Volviendo a modo dormido.");
+        System.out.println("\nOrden cancelada. Volviendo a modo dormido.");
         robot.setEstado(new EstadoDormido(robot));
     }
 
@@ -44,11 +44,11 @@ public class EstadoAtendiendo implements EstadoRobot {
 
     @Override
     public void preparar() {
-        System.out.println("No hay orden seleccionada para preparar.");
+        System.out.println("\nNo hay orden seleccionada para preparar.");
     }
 
     @Override
     public void entregar() {
-        System.out.println("No hay orden lista para entregar.");
+        System.out.println("\nNo hay orden lista para entregar.");
     }
 }

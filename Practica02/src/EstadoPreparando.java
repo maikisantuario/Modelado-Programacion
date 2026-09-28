@@ -15,28 +15,27 @@ public class EstadoPreparando implements EstadoRobot {
 
     @Override
     public void llamar() {
-        System.out.println("El robot esta ocupado en la cocina.");
+        System.out.println("\nEl robot esta ocupado en la cocina.");
     }
 
     @Override
     public void ordenarPizza(Pizza pizza) {
-        System.out.println("No se pueden agregar productos mientras se esta preparando la orden.");
+        System.out.println("\nNo se pueden agregar productos mientras se esta preparando la orden.");
     }
 
     @Override
     public void ordenarHelado(Helado helado) {
-        System.out.println("No se pueden agregar productos mientras se esta preparando la orden.");
+        System.out.println("\nNo se pueden agregar productos mientras se esta preparando la orden.");
     }
 
     @Override
     public void cancelar() {
-        System.out.println("No es posible cancelar una orden que ya esta en preparacion.");
+        System.out.println("\nNo es posible cancelar una orden que ya esta en preparacion.");
     }
 
     @Override
     public void confirmar() {
-	robot.setEstado(new EstadoPreparando(robot));
-        System.out.println("La orden ya fue confirmada y esta preparandose.");
+        System.out.println("\nLa orden ya fue confirmada y esta preparandose.");
     }
 
     @Override
@@ -55,6 +54,6 @@ public class EstadoPreparando implements EstadoRobot {
 
     @Override
     public void entregar() {
-	System.out.println("La orden aun no ha sido preparada.");
+	System.out.println("\nLa orden aun no ha sido preparada.");
     }
 }

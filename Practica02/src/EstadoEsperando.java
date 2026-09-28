@@ -15,34 +15,31 @@ public class EstadoEsperando implements EstadoRobot {
 
     @Override
     public void llamar() {
-	System.out.println("El robot ya te esta atendiendo.");
+	System.out.println("\nEl robot ya te esta atendiendo.");
     }
 
     @Override
     public void ordenarPizza(Pizza pizza) {
-	robot.setPizzaOrdenada(pizza);
-	System.out.println("Pizza actualizada en la orden: " + pizza.getDescripcion());
+	System.out.println("\nYa no se pueden agregar productos, esperando indicacion para la entrega.");
     }
     @Override
     public void ordenarHelado(Helado helado) {
-        robot.setHeladoOrdenado(helado);
-        System.out.println("Helado actualizado en la orden: " + helado.getDescripcion());
+	System.out.println("\nYa no se pueden agregar productos, esperando indicacion para la entrega.");
     }
 
     @Override
     public void cancelar() {
-        System.out.println("No es posible cancelar una orden que ya esta Preparada.");;
+        System.out.println("\nNo es posible cancelar una orden que ya esta Preparada.");;
     }
 
     @Override
     public void confirmar() {
-        System.out.println("Orden confirmada. Pasando a cocina para preparacion.");
-        robot.setEstado(new EstadoPreparando(robot));
+        System.out.println("\nOrden confirmada y preparada, esperando indicacion para la entrega.");
     }
 
     @Override
     public void preparar() {
-        System.out.println("Debes confirmar la orden antes de comenzar a preparar.");
+        System.out.println("\nOrden preparada, esperando indicacion para la entrega.");
     }
 
     @Override
