@@ -1,7 +1,7 @@
 /**
  * Representa el estado donde el Robot ya recibio productos y espera confirmacion o modificaciones.
  */
-public class EstadoEsperando implements EstadoRobot {
+public class EstadoEsperandoEntrega implements EstadoRobot {
     private Robot robot;
 
     /**
