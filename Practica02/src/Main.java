@@ -28,7 +28,8 @@ public class Main {
             // La opción de pagar solo aparece al final si hay algo en la orden
             if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
                 System.out.println("5. Confirmar orden actual");
-		System.out.println("6. Solicitar Entrega");
+		System.out.println("6. Preparar orden actual");
+		System.out.println("7. Solicitar Entrega");
             }
             
             System.out.print("Elige una opción: ");
@@ -80,16 +81,12 @@ public class Main {
 		break;
 
 	    case "5":
-		// Validamos que realmente tenga una orden antes de confirmar
-		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
                     robot.confirmar();
-                    robot.preparar();
-                } else {
-                    System.out.println("No hay nada en la orden para confirmar.");
-                }
                 break;
 
 	    case "6":
+		    robot.preparar();
+	    case "7":
 		System.out.println("\n[Solicitando entrega al robot]");
 		if (robot.getEstadoActual() instanceof EstadoEsperando)
 		    imprimirTicket(robot);
