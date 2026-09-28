@@ -85,7 +85,8 @@ public class Main {
                 break;
 
 	    case "6":
-		    robot.preparar();
+		robot.preparar();
+		break;
 	    case "7":
 		System.out.println("\n[Solicitando entrega al robot]");
 		if (robot.getEstadoActual() instanceof EstadoEsperando)
