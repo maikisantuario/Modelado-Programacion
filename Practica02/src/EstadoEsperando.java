@@ -50,7 +50,10 @@ public class EstadoEsperando implements EstadoRobot {
 
     @Override
     public void entregar() {
-        System.out.println("La orden aun no ha sido preparada.");
+	System.out.println("\nEntregando orden completada al cliente. Buen provecho!");
+	robot.setEstado(new EstadoDormido(robot));
+	robot.setPizzaOrdenada(null);
+	robot.setHeladoOrdenado(null);
     }
 }
 	

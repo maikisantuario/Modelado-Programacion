@@ -12,9 +12,9 @@ public class Main {
         Robot robot = new Robot();
         boolean salir = false;
 
-        System.out.println("==================================================");
+        System.out.println("\n=============================================================");
         System.out.println("     BIENVENIDO A EL PEQUEÑO CESARÍN");
-        System.out.println("==================================================");
+        System.out.println("=============================================================");
 
         while (!salir) {
             System.out.println("\n--- MENÚ ---");
@@ -27,7 +27,8 @@ public class Main {
             
             // La opción de pagar solo aparece al final si hay algo en la orden
             if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-                System.out.println("5. Pagar orden actual");
+                System.out.println("5. Confirmar orden actual");
+		System.out.println("6. Solicitar Entrega");
             }
             
             System.out.print("Elige una opción: ");
@@ -37,10 +38,7 @@ public class Main {
             switch (opcion) {
 	    case "1":
 		// Despertar al robot automáticamente si está dormido
-		if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
-		    System.out.println("\n[El robot se ha despertado para atenderte]");
 		    robot.llamar();
-		}
 
 		if (robot.getPizzaOrdenada() != null) {
 		    System.out.println("Ya tienes una pizza en la orden. Límite de 1 por cliente.");
@@ -51,10 +49,7 @@ public class Main {
                     
 	    case "2":
 		// Despertar al robot automáticamente si está dormido
-		if (robot.getPizzaOrdenada() == null && robot.getHeladoOrdenado() == null) {
-		    System.out.println("\n[El robot se ha despertado para atenderte]");
 		    robot.llamar();
-		}
 
 		if (robot.getHeladoOrdenado() != null) {
 		    System.out.println("Ya tienes un helado en la orden. Límite de 1 por cliente.");
@@ -71,45 +66,35 @@ public class Main {
 	    case "4":
 		// Si el usuario quiere salir, verificamos si dejó una orden pendiente
 		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-		    System.out.print("\nTienes una orden en curso. ¿Deseas confirmarla y pagar para recibir tu pedido? (sí/no): ");
+		    System.out.print("\nTienes una orden en curso. ¿Deseas cancelarla? (sí/no): ");
 		    String respuesta = scanner.nextLine().trim().toLowerCase();
                         
 		    if (respuesta.equals("sí") || respuesta.equals("si")) {
-			System.out.println("\n--- Confirmando la orden ---");
-			robot.confirmar(); // Pasa al estado de preparación
-                            
-			// El robot toma el control absoluto automatizado
-			System.out.println("\n[El robot está preparando tu orden...]");
-			robot.preparar(); 
-                            
-			System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
-			imprimirTicket(robot);
-			robot.entregar(); // Entrega y regresa a dormir
-		    } else {
-			System.out.println("\n--- Cancelando orden pendiente ---");
+			System.out.println("\n¡¡¡¡¡ Cancelando orden pendiente !!!!!");
 			robot.cancelar();
+		    } else {
+			continue;
 		    }
 		}
 		salir = true;
 		break;
 
 	    case "5":
-		// Validamos que realmente tenga una orden antes de cobrar
+		// Validamos que realmente tenga una orden antes de confirmar
 		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
-		    System.out.println("\n--- Pagando la orden actual ---");
-		    robot.confirmar(); // Pasa al estado de preparación
-                        
-		    // El robot toma el control absoluto automatizado
-		    System.out.println("\n[El robot está preparando tu orden...]");
-		    robot.preparar(); 
-                        
-		    System.out.println("\n[El robot ha terminado y te entrega tu pedido]");
+                    robot.confirmar();
+                    robot.preparar();
+                } else {
+                    System.out.println("No hay nada en la orden para confirmar.");
+                }
+                break;
+
+	    case "6":
+		System.out.println("\n[Solicitando entrega al robot]");
+		if (robot.getEstadoActual() instanceof EstadoEsperando)
 		    imprimirTicket(robot);
-		    robot.entregar(); // Entrega y regresa a dormir
-		} else {
-		    System.out.println("Opción no válida.");
-		}
-		break;
+                robot.entregar(); // Se entrega y el estado lo devuelve a dormir internamente
+                break;
                     
 	    default:
 		System.out.println("Opción no válida.");
@@ -219,15 +204,16 @@ public class Main {
             switch (extra) {
 	    case "1":
 		if (c1 < 3) {
-		helado = new Fresitas(helado);
-		System.out.println("-> Fresitas agregadas.");
-		c1++;
-		extrasAgregados++;
+		    helado = new Fresitas(helado);
+		    System.out.println("-> Fresitas agregadas.");
+		    c1++;
+		    extrasAgregados++;
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
-		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
+		    System.out.println("\u001B[31mLímite máximo de Fresitas alcanzado (3).\u001B[0m");
 		}
 		break;
+    
 	    case "2":
 		if (c2 < 3) {
 		helado = new Manguitos(helado);
@@ -322,9 +308,9 @@ public class Main {
     }
 
     private static void imprimirTicket(Robot robot) {
-        System.out.println("\n==================================================");
+        System.out.println("\n=============================================================");
         System.out.println("           TICKET DE COMPRA - EL PEQUEÑO CESARÍN");
-        System.out.println("==================================================");
+        System.out.println("=============================================================");
         double total = 0.0;
 
         if (robot.getPizzaOrdenada() != null) {
@@ -344,8 +330,8 @@ public class Main {
             total += h.getPrecio();
         }
 
-        System.out.println("--------------------------------------------------");
+        System.out.println("--------------------------------------------------------------");
         System.out.println(" TOTAL A PAGAR: $" + total);
-        System.out.println("==================================================");
+        System.out.println("==============================================================");
     }
 }

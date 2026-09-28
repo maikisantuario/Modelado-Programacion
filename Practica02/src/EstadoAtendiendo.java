@@ -22,14 +22,12 @@ public class EstadoAtendiendo implements EstadoRobot {
     public void ordenarPizza(Pizza pizza) {
         robot.setPizzaOrdenada(pizza);
         System.out.println("Pizza agregada al pedido: " + pizza.getDescripcion());
-        robot.setEstado(new EstadoEsperando(robot));
     }
 
     @Override
     public void ordenarHelado(Helado helado) {
         robot.setHeladoOrdenado(helado);
         System.out.println("Helado agregado al pedido: " + helado.getDescripcion());
-        robot.setEstado(new EstadoEsperando(robot));
     }
 
     @Override
@@ -40,7 +38,8 @@ public class EstadoAtendiendo implements EstadoRobot {
 
     @Override
     public void confirmar() {
-        System.out.println("Primero debes agregar algun producto a tu orden.");
+	robot.setEstado(new EstadoPreparando(robot));
+        System.out.println("\nOrden, confirmada :)");
     }
 
     @Override

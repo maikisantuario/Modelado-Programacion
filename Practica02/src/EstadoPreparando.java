@@ -35,30 +35,26 @@ public class EstadoPreparando implements EstadoRobot {
 
     @Override
     public void confirmar() {
+	robot.setEstado(new EstadoPreparando(robot));
         System.out.println("La orden ya fue confirmada y esta preparandose.");
     }
 
     @Override
     public void preparar() {
-        System.out.println("\n=== INICIANDO PREPARACION DE LA ORDEN ===");
-        if (robot.getPizzaOrdenada() != null) {
-            System.out.println("\n-- Preparando Pizza: " + robot.getPizzaOrdenada().getNombre() + " --");
-            robot.getPizzaOrdenada().prepararPizza();
-            System.out.println("Costo Pizza: $" + robot.getPizzaOrdenada().getPrecio());
-        }
-        if (robot.getHeladoOrdenado() != null) {
-            System.out.println("\n-- Preparando Helado --");
-            System.out.println("Detalle: " + robot.getHeladoOrdenado().getDescripcion());
-            System.out.println("Costo Helado: $" + robot.getHeladoOrdenado().getPrecio());
-        }
-        System.out.println("\nPedido preparado exitosamente! Listo para entregar.");
+	System.out.println("\n====== INICIANDO PREPARACIÓN DE LA ORDEN ======");
+	if (robot.getPizzaOrdenada() != null) {
+	    robot.getPizzaOrdenada().prepararPizza();
+	}
+	if (robot.getHeladoOrdenado() != null) {
+	    System.out.println("\n------ Preparando Helado ------");
+	    System.out.println("Detalle: " + robot.getHeladoOrdenado().getDescripcion());
+	}
+	System.out.println("\n¡Orden preparada exitosamente! Listo para entregar.");
+	robot.setEstado(new EstadoEsperando(robot));
     }
 
     @Override
     public void entregar() {
-        System.out.println("\nEntregando orden completada al cliente. Buen provecho!");
-        robot.setPizzaOrdenada(null);
-        robot.setHeladoOrdenado(null);
-        robot.setEstado(new EstadoDormido(robot));
+	System.out.println("La orden aun no ha sido preparada.");
     }
 }

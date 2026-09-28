@@ -92,7 +92,7 @@ public abstract class Pizza {
 
     public void seleccionarMasa(TipoMasa masa) {
         this.tipoMasa = masa;
-        System.out.println("Tipo de masa seleccionada: " + masa);
+        System.out.println("\nTipo de masa seleccionada: " + masa);
     }
 
     public String getNombre() {
