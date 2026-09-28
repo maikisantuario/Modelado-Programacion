@@ -7,6 +7,13 @@ import java.util.Scanner;
 
 public class Main {
 
+    /**
+     * Punto de entrada principal del programa.
+     * Gestiona el ciclo del menú interactivo, la lectura de opciones de usuario
+     * y las llamadas a los métodos del contexto Robot.
+     * 
+     * @param args Argumentos de la línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Robot robot = new Robot();
@@ -20,12 +27,9 @@ public class Main {
             System.out.println("\n--- MENÚ ---");
             System.out.println("1. Ordenar Pizza (Máximo 1)");
             System.out.println("2. Ordenar Helado (Máximo 1)");
-
-	    // Las opciones de cancelar y salir aparecen siempre
             System.out.println("3. Cancelar orden");
             System.out.println("4. Salir de la sucursal");
             
-            // La opción de pagar solo aparece al final si hay algo en la orden
             if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
                 System.out.println("5. Confirmar orden actual");
 		System.out.println("6. Preparar orden actual");
@@ -38,34 +42,28 @@ public class Main {
 
             switch (opcion) {
 	    case "1":
-		// Despertar al robot automáticamente si está dormido
 		robot.llamar();
-
-		if (robot.getPizzaOrdenada() != null) {
+		if (robot.getPizzaOrdenada() != null) 
 		    System.out.println("Ya tienes una pizza en la orden. Límite de 1 por cliente.");
-		} else {
+		else 
 		    ordenarPizza(scanner, robot);
-		}
 		break;
                     
 	    case "2":
-		// Despertar al robot automáticamente si está dormido
 		robot.llamar();
-
-		if (robot.getHeladoOrdenado() != null) {
+		if (robot.getHeladoOrdenado() != null) 
 		    System.out.println("Ya tienes un helado en la orden. Límite de 1 por cliente.");
-		} else {
-		    ordenarHelado(scanner, robot);
-		}
+		else 
+		    ordenarHelado(scanner, robot);		
 		break;
 		
 	    case "3":
 		System.out.println("\n--- Cancelando orden ---");
-		robot.cancelar(); // El robot se vuelve a dormir y limpia la orden
+		robot.cancelar();
 		break;
                     
 	    case "4":
-		// Si el usuario quiere salir, verificamos si dejó una orden pendiente
+		/** Si el usuario quiere salir, verificamos si dejó una orden pendiente */
 		if (robot.getPizzaOrdenada() != null || robot.getHeladoOrdenado() != null) {
 		    System.out.print("\nTienes una orden en curso. ¿Deseas cancelarla? (sí/no): ");
 		    String respuesta = scanner.nextLine().trim().toLowerCase();
@@ -73,9 +71,8 @@ public class Main {
 		    if (respuesta.equals("sí") || respuesta.equals("si")) {
 			System.out.println("\n¡¡¡¡¡ Cancelando orden pendiente !!!!!");
 			robot.cancelar();
-		    } else {
-			continue;
-		    }
+		    } else 
+			continue;		    
 		}
 		salir = true;
 		break;
@@ -90,9 +87,9 @@ public class Main {
 		break;
 	    case "7":
 		System.out.println("\n[Solicitando entrega al robot]");
-		if (robot.getEstadoActual() instanceof EstadoEsperando)
+		if (robot.getEstadoActual() instanceof EstadoEsperandoEntrega)
 		    imprimirTicket(robot);
-                robot.entregar(); // Se entrega y el estado lo devuelve a dormir internamente
+                robot.entregar();
                 break;
                     
 	    default:
@@ -103,11 +100,19 @@ public class Main {
         System.out.println("\n¡Gracias por visitar El Pequeño Cesarín! Vuelve pronto.");
         scanner.close();
     }
+    
 
+    /**
+     * Solicita al usuario la selección de masa y especialidad para construir
+     * un objeto Pizza y agregarlo a la orden del robot.
+     * 
+     * @param scanner Instancia de Scanner para leer las entradas por consola.
+     * @param robot   Referencia al contexto Robot que almacena la orden.
+     */
     private static void ordenarPizza(Scanner scanner, Robot robot) {
         TipoMasa masa = null;
        
-        // Valida la masa hasta que elija una opción válida
+        /** Valida la masa hasta que elija una opción válida */
         while (masa == null) {
             System.out.println("\n--- TIPOS DE MASA ---");
             System.out.println("1. Americana");
@@ -127,7 +132,7 @@ public class Main {
 
         Pizza pizza = null;
         
-        // Valida la especialidad hasta que elija una opción valida
+        /** Valida la especialidad hasta que elija una opción valida */
         while (pizza == null) {
             System.out.println("\n--- ESPECIALIDADES DE PIZZA ---");
             System.out.println("1. Carnívora (Ingredientes: Pepperoni, salchicha italiana y tocino)");
@@ -154,10 +159,17 @@ public class Main {
         System.out.println("¡Pizza agregada a la orden!");
     }
 
+    /**
+     * Solicita al usuario el sabor base y los ingredientes extras para construir
+     * un objeto Helado decorado (patrón Decorator) y agregarlo a la orden del robot.
+     * 
+     * @param scanner Instancia de Scanner para leer las entradas por consola.
+     * @param robot   Referencia al contexto Robot que almacena la orden.
+     */
     private static void ordenarHelado(Scanner scanner, Robot robot) {
         Helado helado = null;
         
-        // Verifica que elija uno de los 3 sabores base válido
+        /** Verifica que elija uno de los 3 sabores base válido */
         while (helado == null) {
             System.out.println("\n--- SABORES DE HELADO ---");
             System.out.println("1. Chocolate");
@@ -175,11 +187,11 @@ public class Main {
             }
         }
 
-        // Ciclo para agregar extras; la opción de terminar solo sale si ya escogió un ingrediente
+        /** Ciclo para agregar extras; la opción de terminar solo sale si ya escogió un ingrediente */
         boolean agregando = true;
         int extrasAgregados = 0;
         
-        // Contadores individuales
+        /** Contadores individuales */
         int c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0, c7 = 0, c8 = 0;
         
         while (agregando) {
@@ -306,6 +318,12 @@ public class Main {
         System.out.println("¡Helado agregado a la orden!");
     }
 
+    /**
+     * Genera e imprime en consola la representación del ticket de compra,
+     * desglosando descripciones, precios individuales y el total acumulado.
+     * 
+     * @param robot Referencia al robot que contiene los productos de la orden.
+     */
     private static void imprimirTicket(Robot robot) {
         System.out.println("\n=============================================================");
         System.out.println("           TICKET DE COMPRA - EL PEQUEÑO CESARÍN");
@@ -316,7 +334,7 @@ public class Main {
             Pizza p = robot.getPizzaOrdenada();
             System.out.println("PIZZA:");
             System.out.println("  * " + p.getNombre() + " - $" + p.getPrecio());
-            // Mostramos los ingredientes específicos en el ticket final
+            /** Mostramos los ingredientes específicos en el ticket final */
             System.out.println("  * Ingredientes: " + p.getDescripcion());
             total += p.getPrecio();
         }

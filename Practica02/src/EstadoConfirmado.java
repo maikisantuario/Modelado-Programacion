@@ -1,6 +1,6 @@
 /**
  * Representa el estado donde el Robot ya recibio la confirmacion de la orden
- * y espera la indicacion para comenzar la a preparar la orden.
+ * y espera la indicacion para comenzar a preparar la orden.
  */
 public class EstadoConfirmado implements EstadoRobot {
     private Robot robot;

@@ -31,6 +31,6 @@ public class Manguitos extends IngredienteExtra {
      */
     @Override
     public double getPrecio() {
-            return heladoDecorado.getPrecio() + 7.0;
+	return heladoDecorado.getPrecio() + 7.0;
     }
 }

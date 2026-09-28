@@ -1,5 +1,6 @@
 /**
- * Representa el estado donde el Robot ya recibio productos y espera confirmacion o modificaciones.
+ * Representa el estado donde el Robot ya termino de preparar los productos
+ * y espera la indicacion para entregar la orden al cliente.
  */
 public class EstadoEsperandoEntrega implements EstadoRobot {
     private Robot robot;
@@ -9,7 +10,7 @@ public class EstadoEsperandoEntrega implements EstadoRobot {
      * 
      * @param robot Referencia al robot.
      */
-    public EstadoEsperando(Robot robot) {
+    public EstadoEsperandoEntrega(Robot robot) {
 	this.robot = robot;
     }
 
@@ -29,7 +30,7 @@ public class EstadoEsperandoEntrega implements EstadoRobot {
 
     @Override
     public void cancelar() {
-        System.out.println("\nNo es posible cancelar una orden que ya esta Preparada.");;
+        System.out.println("\nNo es posible cancelar una orden que ya esta Preparada.");
     }
 
     @Override

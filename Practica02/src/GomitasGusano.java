@@ -30,6 +30,6 @@ public class GomitasGusano extends IngredienteExtra {
      */
     @Override
     public double getPrecio() {
-            return heladoDecorado.getPrecio() + 8.0;
+	return heladoDecorado.getPrecio() + 8.0;
     }
 }

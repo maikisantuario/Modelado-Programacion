@@ -1,5 +1,6 @@
 /**
- * Representa el estado donde el Robot esta preparando y listo para entregar los alimentos.
+ * Representa el estado donde el Robot se encuentra ocupado en la cocina
+ * procesando los alimentos solicitados.
  */
 public class EstadoPreparando implements EstadoRobot {
     private Robot robot;
@@ -49,7 +50,7 @@ public class EstadoPreparando implements EstadoRobot {
 	    System.out.println("Detalle: " + robot.getHeladoOrdenado().getDescripcion());
 	}
 	System.out.println("\n¡Orden preparada exitosamente! Listo para entregar.");
-	robot.setEstado(new EstadoEsperando(robot));
+	robot.setEstado(new EstadoEsperandoEntrega(robot));
     }
 
     @Override
