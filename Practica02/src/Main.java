@@ -39,7 +39,7 @@ public class Main {
             switch (opcion) {
 	    case "1":
 		// Despertar al robot automáticamente si está dormido
-		    robot.llamar();
+		robot.llamar();
 
 		if (robot.getPizzaOrdenada() != null) {
 		    System.out.println("Ya tienes una pizza en la orden. Límite de 1 por cliente.");
@@ -50,7 +50,7 @@ public class Main {
                     
 	    case "2":
 		// Despertar al robot automáticamente si está dormido
-		    robot.llamar();
+		robot.llamar();
 
 		if (robot.getHeladoOrdenado() != null) {
 		    System.out.println("Ya tienes un helado en la orden. Límite de 1 por cliente.");
@@ -81,7 +81,7 @@ public class Main {
 		break;
 
 	    case "5":
-                    robot.confirmar();
+		robot.confirmar();
                 break;
 
 	    case "6":
@@ -214,10 +214,10 @@ public class Main {
     
 	    case "2":
 		if (c2 < 3) {
-		helado = new Manguitos(helado);
-		System.out.println("-> Manguitos agregados.");
-		c2++;
-		extrasAgregados++;
+		    helado = new Manguitos(helado);
+		    System.out.println("-> Manguitos agregados.");
+		    c2++;
+		    extrasAgregados++;
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
@@ -225,10 +225,10 @@ public class Main {
 		break;
 	    case "3":
 		if (c3 < 3) {
-		helado = new ChispasChocolate(helado);
-		System.out.println("-> Chispas de chocolate agregadas.");
-		c3++;
-		extrasAgregados++;
+		    helado = new ChispasChocolate(helado);
+		    System.out.println("-> Chispas de chocolate agregadas.");
+		    c3++;
+		    extrasAgregados++;
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
@@ -236,10 +236,10 @@ public class Main {
 		break;
 	    case "4":
 		if (c4 < 3) {
-		helado = new Malvaviscos(helado);
-		System.out.println("-> Malvaviscos agregados.");
-		c4++;
-		extrasAgregados++; 
+		    helado = new Malvaviscos(helado);
+		    System.out.println("-> Malvaviscos agregados.");
+		    c4++;
+		    extrasAgregados++; 
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
@@ -247,10 +247,10 @@ public class Main {
 		break;
 	    case "5":
 		if (c5 < 3) {
-		helado = new Kiwis(helado);
-		System.out.println("-> Kiwis agregados.");
-		c5++;
-		extrasAgregados++; 
+		    helado = new Kiwis(helado);
+		    System.out.println("-> Kiwis agregados.");
+		    c5++;
+		    extrasAgregados++; 
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
@@ -258,10 +258,10 @@ public class Main {
 		break;
 	    case "6":
 		if (c6 < 3) {
-		helado = new GomitasGusano(helado);
-		System.out.println("-> Gomitas de gusano agregadas.");
-		c6++;
-		extrasAgregados++;
+		    helado = new GomitasGusano(helado);
+		    System.out.println("-> Gomitas de gusano agregadas.");
+		    c6++;
+		    extrasAgregados++;
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
@@ -269,10 +269,10 @@ public class Main {
 		break;
 	    case "7":
 		if (c7 < 3) {
-		helado = new GomitasPanda(helado);
-		System.out.println("-> Gomitas de panda agregadas.");
-		c7++;
-		extrasAgregados++;
+		    helado = new GomitasPanda(helado);
+		    System.out.println("-> Gomitas de panda agregadas.");
+		    c7++;
+		    extrasAgregados++;
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");
@@ -280,10 +280,10 @@ public class Main {
 		break;
 	    case "8":
 		if (c8 < 3) {
-		helado = new GomitasAro(helado);
-		System.out.println("-> Gomitas de aro agregadas.");
-		c8++;
-		extrasAgregados++;
+		    helado = new GomitasAro(helado);
+		    System.out.println("-> Gomitas de aro agregadas.");
+		    c8++;
+		    extrasAgregados++;
 		} else {
 		    System.out.println("Ya alcanzó el límite máximo permitido para este ingrediente.");
 		    System.out.println("\u001B[31mNo puedes agregar más porciones.\u001B[0m");

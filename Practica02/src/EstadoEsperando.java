@@ -31,10 +31,7 @@ public class EstadoEsperando implements EstadoRobot {
 
     @Override
     public void cancelar() {
-        System.out.println("Orden cancelada. Regresando a modo dormido.");
-        robot.setPizzaOrdenada(null);
-        robot.setHeladoOrdenado(null);
-        robot.setEstado(new EstadoDormido(robot));
+        System.out.println("No es posible cancelar una orden que ya esta Preparada.");;
     }
 
     @Override
