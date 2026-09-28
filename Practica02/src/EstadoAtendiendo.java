@@ -38,7 +38,7 @@ public class EstadoAtendiendo implements EstadoRobot {
 
     @Override
     public void confirmar() {
-	robot.setEstado(new EstadoPreparando(robot));
+        robot.setEstado(new EstadoConfirmado(robot));
         System.out.println("\nOrden, confirmada :)");
     }
 
