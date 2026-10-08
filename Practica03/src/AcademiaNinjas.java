@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Scanner;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class AcademiaNinjas {
     private NinjaVoluntario[] ninjas;
     private int contadorNinjas;
     private List<Grupo> gruposArmados;
+    Scanner scanner = new Scanner(System.in);
 
     /**
      * Constructor de la AcademiaNinjas.
@@ -67,7 +69,7 @@ public class AcademiaNinjas {
         Iterador<NinjaVoluntario> itNinjas = crearIteradorNinjas();
         Iterador<Aspirante> itAspirantes = crearIteradorAspirantes();
 
-        while (itNinjas.hasNext()) {
+        while (itNinjas.hasNext() && itAspirantes.hasNext()) {
             NinjaVoluntario lider = itNinjas.next();
             Grupo grupo = new Grupo(lider);
 
@@ -105,20 +107,45 @@ public class AcademiaNinjas {
         int contadorGrupo = 0;
         for (Grupo g : gruposArmados) {
             contadorGrupo++;
+	    System.out.println("\n-------------------------------------------------------------");
+	    System.out.println("ASIGNACIÓN PARA EL GRUPO " + contadorGrupo + " (Líder: " + g.getLider().getNombre() + ")");
+	    System.out.println("1. Paquete Básico");
+	    System.out.println("2. Paquete Avanzado");
+	    System.out.println("3. Paquete Táctico");
+	    System.out.println("4. Crear Paquete Personalizado");
+	    System.out.print("Selecciona una opción: ");
 
-            if (contadorGrupo % 4 == 1) {
+	    String opcion = scanner.nextLine();
+
+	    switch (opcion) {
+            case "1":
                 g.setPaquete(director.construirPaqueteBasico());
-            } else if (contadorGrupo % 4 == 2) {
+                break;
+            case "2":
                 g.setPaquete(director.construirPaqueteAvanzado());
-            } else if (contadorGrupo % 4 == 3) {
+                break;
+            case "3":
                 g.setPaquete(director.construirPaqueteTactico());
-            } else {
+                break;
+            case "4":
                 builder.reset();
-                builder.agregarKunai(2);
-                builder.agregarShuriken(3);
-                builder.agregarBotiquin(1);
-                g.setPaquete(builder.obtenerPaquete());
-            }
+                System.out.print("Cantidad de Kunais: ");
+                builder.agregarKunai(Integer.parseInt(scanner.nextLine()));
+                System.out.print("Cantidad de Shurikens: ");
+                builder.agregarShuriken(Integer.parseInt(scanner.nextLine()));
+                System.out.print("Cantidad de Papeles Bomba: ");
+                builder.agregarPapelBomba(Integer.parseInt(scanner.nextLine()));
+                System.out.print("Cantidad de Bombas de Humo: ");
+                builder.agregarBombaHumo(Integer.parseInt(scanner.nextLine()));
+                System.out.print("Cantidad de Botiquines: ");
+                builder.agregarBotiquin(Integer.parseInt(scanner.nextLine()));
+
+		g.setPaquete(builder.obtenerPaquete());
+                break;
+            default:
+                System.out.println("Opción inválda, asignando Paquete Básico por defecto.");
+                g.setPaquete(director.construirPaqueteBasico());
+	    }
 
             CampoEntrenamiento campo = fabricaCampos.crearCampo(g.getSumaNivelHabilidad());
             g.setCampo(campo);
