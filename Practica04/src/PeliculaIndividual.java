@@ -1,3 +1,4 @@
+import java.util.Iterator;
 /**
  * Clase que representa una pelcula individual en el catalogo
  */
@@ -7,25 +8,24 @@ public class PeliculaIndividual implements Producto {
     private int duracion;
     private String genero;
     private String sinopsis;
-    private double precio;
+    private double precioRenta;
 
     /**
      * Constructor de PeliculaIndividual
-     * 
-     * @param nombre 
-     * @param director 
-     * @param duracion 
-     * @param genero 
-     * @param sinopsis 
-     * @param precio 
+     * @param nombre Nombre de la película.
+     * @param director Director de la película.
+     * @param duracion Duración en minutos.
+     * @param genero Género cinematográfico.
+     * @param sinopsis Sinopsis de la película.
+     * @param precioRenta Precio de renta.
      */
-    public PeliculaIndividual(String nombre, String director, int duracion, String genero, String sinopsis, double precio) {
+    public PeliculaIndividual(String nombre, String director, int duracion, String genero, String sinopsis, double precioRenta) {
         this.nombre = nombre;
         this.director = director;
         this.duracion = duracion;
         this.genero = genero;
         this.sinopsis = sinopsis;
-        this.precio = precio;
+        this.precioRenta = precioRenta;
     }
 
     @Override
@@ -40,7 +40,28 @@ public class PeliculaIndividual implements Producto {
 
     @Override
     public double getPrecio() {
-        return precio;
+        return precioRenta;
+    }
+    
+    @Override
+    public int getDuracion() {
+	return duracion;
+    }
+
+    /**
+     * Obtiene el director de la película.
+     * @return El director.
+     */
+    public String getDirector() {
+        return director;
+    }
+
+    /**
+     * Obtiene la sinopsis de la película.
+     * @return La sinopsis.
+     */
+    public String getSinopsis() {
+        return sinopsis;
     }
 
     @Override
@@ -52,5 +73,11 @@ public class PeliculaIndividual implements Producto {
         System.out.println("Sinopsis: " + sinopsis);
         System.out.println("Precio: $" + precio);
         System.out.println("----------------------------------------");
+    }
+
+
+    @Override
+    public Iterator<Producto> crearIterador() {
+        return new NullIterator();
     }
 }
