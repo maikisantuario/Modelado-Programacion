@@ -3,27 +3,57 @@
  * Aplica el patrón Composite.
  */
 public interface Producto {
-    
+
     /**
      * Obtiene el nombre del producto.
-     * @return 
+     * @return El nombre del producto.
      */
-    String getNombre();
-    
+    public String getNombre();
+
     /**
-     * Obtiene el genero del producto
-     * @return 
+     * Obtiene el género del producto.
+     * @return El género del producto.
      */
-    String getGenero();
-    
+    public String getGenero();
+
     /**
-     * Muestra la informacion completa del producto
+     * Obtiene el precio del producto.
+     * @return El precio del producto.
      */
-    void mostrarResumen();
-    
+    public double getPrecio();
+
     /**
-     * Obtiene el precio de renta/venta del producto
-     * @return 
+     * Muestra un resumen del producto.
      */
-    double getPrecio();
+    public void mostrarResumen();
+
+    /**
+     * Muestra la información detallada del producto.
+     */
+    public void mostrarDetalle();
+
+    /**
+     * Agrega un producto hijo.
+     * @param producto El producto a agregar.
+     */
+    public void agregar(Producto producto);
+
+    /**
+     * Elimina un producto hijo.
+     * @param producto El producto a eliminar.
+     */
+    public void eliminar(Producto producto);
+
+    /**
+     * Obtiene un producto hijo por su índice.
+     * @param indice El índice del hijo.
+     * @return El producto correspondiente.
+     */
+    public Producto obtenerHijo(int indice);
+
+    /**
+     * Crea y retorna un iterador para la estructura.
+     * @return Un iterador de productos.
+     */
+    public Iterator<Producto> crearIterador();
 }
