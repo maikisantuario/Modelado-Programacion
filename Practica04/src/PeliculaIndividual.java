@@ -1,6 +1,8 @@
 import java.util.Iterator;
+import java.util.Collections;
+
 /**
- * Clase que representa una pelcula individual en el catalogo
+ * Clase que representa una pelicula individual en el catalogo.
  */
 public class PeliculaIndividual implements Producto {
     private String nombre;
@@ -11,7 +13,7 @@ public class PeliculaIndividual implements Producto {
     private double precioRenta;
 
     /**
-     * Constructor de PeliculaIndividual
+     * Constructor de PeliculaIndividual.
      * @param nombre Nombre de la película.
      * @param director Director de la película.
      * @param duracion Duración en minutos.
@@ -45,7 +47,7 @@ public class PeliculaIndividual implements Producto {
     
     @Override
     public int getDuracion() {
-	return duracion;
+        return duracion;
     }
 
     /**
@@ -66,18 +68,38 @@ public class PeliculaIndividual implements Producto {
 
     @Override
     public void mostrarResumen() {
+        System.out.println("Película: " + nombre + " - Precio: $" + precioRenta);
+    }
+
+    @Override
+    public void mostrarDetalle() {
+        System.out.println("----------------------------------------");
         System.out.println("Película: " + nombre);
         System.out.println("Director: " + director);
         System.out.println("Duración: " + duracion + " min");
         System.out.println("Genero: " + genero);
         System.out.println("Sinopsis: " + sinopsis);
-        System.out.println("Precio: $" + precio);
+        System.out.println("Precio: $" + precioRenta);
         System.out.println("----------------------------------------");
     }
 
+    @Override
+    public void agregar(Producto producto) {
+        throw new UnsupportedOperationException("Las películas individuales no tienen hijos.");
+    }
+
+    @Override
+    public void eliminar(Producto producto) {
+        throw new UnsupportedOperationException("Las películas individuales no tienen hijos.");
+    }
+
+    @Override
+    public Producto obtenerHijo(int indice) {
+        throw new UnsupportedOperationException("Las películas individuales no tienen hijos.");
+    }
 
     @Override
     public Iterator<Producto> crearIterador() {
-        return new NullIterator();
+        return Collections.emptyIterator();
     }
 }
