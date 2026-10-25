@@ -73,7 +73,7 @@ public class Saga implements Producto {
 
     @Override
     public void mostrarResumen() {
-        System.out.println("[Saga] " + nombre + " (Incluye " + componentes.size() + " elementos) - Precio con 5% desc: $" + getPrecio());
+        System.out.println("[Saga] " + nombre + " (Incluye " + componentes.size() + " elementos) - Precio con 5% de descuento: $" + getPrecio());
     }
 
     @Override
@@ -93,6 +93,6 @@ public class Saga implements Producto {
 
     @Override
     public Iterator<Producto> crearIterador() {
-        return new CompositeIterator(componentes.iterator());
+        return componentes.iterator();
     }
 }
