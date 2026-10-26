@@ -31,9 +31,18 @@ public class Catalogo {
         System.out.println("\n=== CATALOGO COMPLETO ROCKBUSTER ===");
         for (int i = 0; i < productos.size(); i++) {
             Producto p = productos.get(i);
-            System.out.println((i + 1) + ". " + p.getNombre() + " - $" + p.getPrecio());
+            System.out.print((i + 1) + ". ");
+	    p.mostrarResumen();
         }
 	System.out.println("====================================");
+    }
+
+    /**
+     * Obtiene el número total de productos en el catálogo.
+     * @return Cantidad de productos.
+     */
+    public int getTamanio(){
+	return productos.size();
     }
 
     /**
@@ -42,8 +51,8 @@ public class Catalogo {
      * @return El producto correspondiente, o null si el indice es invalido.
      */
     public Producto obtenerProductoPorIndice(int indice) {
-        if (indice > 0 && indice <= productos.size()) {
-            return productos.get(indice - 1);
+        if (indice >= 0 && indice < productos.size()) {
+            return productos.get(indice);
         }
         return null;
     }
@@ -53,18 +62,22 @@ public class Catalogo {
      * @param genero El genero a buscar.
      */
     public void filtrarPorGenero(String genero) {
-        System.out.println("\n=== PRODUCTOS DEL GENERO: " + genero + " ===");
-        boolean encontrado = false;
-        for (Producto p : productos) {
-            if (p.getGenero().equalsIgnoreCase(genero)) {
-                System.out.println("- " + p.getNombre() + " - $" + p.getPrecio());
-                encontrado = true;
-            }
-        }
-        if (!encontrado) {
-            System.out.println("No se encontraron productos con ese genero.");
-        }
-        System.out.println("=========================================");
+	System.out.println("\n=== PRODUCTOS DEL GÉNERO: " + genero + " ===");
+	boolean encontrado = false;
+    
+	for (int i = 0; i < productos.size(); i++) {
+	    Producto p = productos.get(i);
+	    if (p.getGenero().equalsIgnoreCase(genero)) {
+		System.out.print((i + 1) + ". ");
+		p.mostrarResumen();
+		encontrado = true;
+	    }
+	}
+    
+	if (!encontrado) {
+	    System.out.println("No se encontraron productos de ese género.");
+	}
+	System.out.println("=========================================");
     }
 
     /**
@@ -72,17 +85,21 @@ public class Catalogo {
      * @param costoMaximo El limite de precio.
      */
     public void filtrarPorCostoMaximo(double costoMaximo) {
-        System.out.println("\n=== PRODUCTOS CON PRECIO <= $" + costoMaximo + " ===");
-        boolean encontrado = false;
-        for (Producto p : productos) {
-            if (p.getPrecio() <= costoMaximo) {
-                System.out.println("- " + p.getNombre() + " - $" + p.getPrecio());
-                encontrado = true;
-            }
-        }
-        if (!encontrado) {
-            System.out.println("No se encontraron productos dentro de ese rango de precio.");
-        }
-        System.out.println("==================================================");
+        System.out.println("\n=== PRODUCTOS HASTA $" + costoMaximo + " ===");
+	boolean encontrado = false;
+
+	for (int i = 0; i < productos.size(); i++) {
+	    Producto p = productos.get(i);
+	    if (p.getPrecio() <= costoMaximo) {
+		System.out.print((i + 1) + ". ");
+		p.mostrarResumen();
+		encontrado = true;
+	    }
+	}
+
+	if (!encontrado) {
+	    System.out.println("No se encontraron productos dentro de ese precio.");
+	}
+	System.out.println("=========================================");
     }
 }

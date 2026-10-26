@@ -37,7 +37,7 @@ public class AdaptadorDiscoMusical implements Producto {
 
     @Override
     public void mostrarResumen() {
-        System.out.println("Disco Musical: " + disco.getNombre() + " - Artista: " + disco.getArtista() + " - Precio: $" + disco.getPrecioVenta());
+	System.out.println(disco.getNombre() + " - $" + String.format("%.2f", disco.getPrecioVenta()));
     }
 
     @Override

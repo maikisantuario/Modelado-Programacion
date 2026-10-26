@@ -1,0 +1,9 @@
+public class Main {
+    public static void main(String[] args) {
+	System.out.println("======= Bienvenidx a la Tienda de Peliculas y Musica RockBuster =======");
+	System.out.println("Escoga la accion que desee realizar: ");
+	System.out.println("1. Ver el catálogo completo");
+	System.out.println("2. Filtrar por género");
+	System.out.println("3. Filtrar por un costo máximo");
+    }
+}

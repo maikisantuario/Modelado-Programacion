@@ -1,3 +1,4 @@
+import java.util.Iterator;
 /**
  * Interfaz que representa un producto en nuestra tienda RockBuster.
  * Aplica el patrón Composite.
@@ -21,6 +22,12 @@ public interface Producto {
      * @return El precio del producto.
      */
     public double getPrecio();
+
+    /**
+     * Obtiene la duración del producto.
+     * @return La duración del producto.
+     */
+    public int getDuracion();
 
     /**
      * Muestra un resumen del producto.

@@ -68,7 +68,7 @@ public class PeliculaIndividual implements Producto {
 
     @Override
     public void mostrarResumen() {
-        System.out.println("Película: " + nombre + " - Precio: $" + precioRenta);
+	System.out.println(nombre + " - $" + String.format("%.2f", precioRenta));
     }
 
     @Override

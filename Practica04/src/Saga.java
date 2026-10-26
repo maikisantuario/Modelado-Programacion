@@ -69,11 +69,11 @@ public class Saga implements Producto {
             duracionTotal += p.getDuracion();
         }
         return duracionTotal;
-    }
+    } 
 
     @Override
     public void mostrarResumen() {
-        System.out.println("[Saga] " + nombre + " (Incluye " + componentes.size() + " elementos) - Precio con 5% de descuento: $" + getPrecio());
+        System.out.println("[Saga] " + nombre + " (Incluye " + componentes.size() + " elementos) - Precio con 5% de descuento: $" + String.format("%.2f", getPrecio()));
     }
 
     @Override
