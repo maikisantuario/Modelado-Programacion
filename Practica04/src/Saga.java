@@ -22,21 +22,38 @@ public class Saga implements Producto {
         this.componentes = new ArrayList<>();
     }
 
+    /**
+     * Agrega un producto a la saga.
+     * @param producto El producto a agregar.
+     */
     @Override
     public void agregar(Producto producto) {
         componentes.add(producto);
     }
 
+    /**
+     * Elimina un producto de la saga.
+     * @param producto El producto a eliminar.
+     */
     @Override
     public void eliminar(Producto producto) {
         componentes.remove(producto);
     }
 
+    /**
+     * Obtiene un producto hijo por su índice.
+     * @param indice El índice del hijo.
+     * @return El producto correspondiente.
+     */
     @Override
     public Producto obtenerHijo(int indice) {
         return componentes.get(indice);
     }
 
+    /**
+     * Obtiene el nombre de la saga.
+     * @return El nombre de la saga.
+     */
     @Override
     public String getNombre() {
         return nombre;
@@ -50,6 +67,10 @@ public class Saga implements Producto {
         return "Mixto";
     }
 
+    /**
+     * Obtiene el género predominante de la saga.
+     * @return El género de la saga.
+     */
     @Override
     public double getPrecio() {
         double sumaTotal = 0.0;
@@ -69,7 +90,7 @@ public class Saga implements Producto {
             duracionTotal += p.getDuracion();
         }
         return duracionTotal;
-    } 
+    }
 
     @Override
     public void mostrarResumen() {
@@ -91,6 +112,10 @@ public class Saga implements Producto {
         System.out.println("----------------------------------------");
     }
 
+    /**
+     * Crea y retorna un iterador para los componentes de la saga.
+     * @return Un iterador de productos.
+     */
     @Override
     public Iterator<Producto> crearIterador() {
         return componentes.iterator();

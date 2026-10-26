@@ -24,9 +24,6 @@ public class Catalogo {
         productos.add(producto);
     }
 
-    /**
-     * Muestra todos los productos del catalogo (solo nombre y precio).
-     */
     public void mostrarCatalogoCompleto() {
         System.out.println("\n=== CATALOGO COMPLETO ROCKBUSTER ===");
         for (int i = 0; i < productos.size(); i++) {

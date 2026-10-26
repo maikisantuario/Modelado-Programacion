@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.Collections;
 
 /**
- * Clase que representa una pelicula individual en el catalogo.
+ * Clase que representa una pelicula individual en el catalogo de RockBuster.
  */
 public class PeliculaIndividual implements Producto {
     private String nombre;
@@ -30,21 +30,37 @@ public class PeliculaIndividual implements Producto {
         this.precioRenta = precioRenta;
     }
 
+    /**
+     * Obtiene el nombre de la película.
+     * @return El nombre.
+     */
     @Override
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Obtiene el género de la película.
+     * @return El género.
+     */
     @Override
     public String getGenero() {
         return genero;
     }
 
+    /**
+     * Obtiene el precio de renta de la película.
+     * @return El precio de renta.
+     */
     @Override
     public double getPrecio() {
         return precioRenta;
     }
-    
+
+    /**
+     * Obtiene la duración de la película.
+     * @return La duración en minutos.
+     */
     @Override
     public int getDuracion() {
         return duracion;
@@ -66,11 +82,17 @@ public class PeliculaIndividual implements Producto {
         return sinopsis;
     }
 
+    /**
+     * Muestra un resumen de la película.
+     */
     @Override
     public void mostrarResumen() {
 	System.out.println(nombre + " - $" + String.format("%.2f", precioRenta));
     }
 
+    /**
+     * Muestra los detalles completos de la película.
+     */
     @Override
     public void mostrarDetalle() {
         System.out.println("----------------------------------------");
@@ -83,21 +105,38 @@ public class PeliculaIndividual implements Producto {
         System.out.println("----------------------------------------");
     }
 
+    /**
+     * Lanza una excepción ya que las películas individuales no tienen hijos.
+     * @param producto El producto a agregar.
+     */
     @Override
     public void agregar(Producto producto) {
         throw new UnsupportedOperationException("Las películas individuales no tienen hijos.");
     }
 
+    /**
+     * Lanza una excepción ya que las películas individuales no tienen hijos.
+     * @param producto El producto a eliminar.
+     */
     @Override
     public void eliminar(Producto producto) {
         throw new UnsupportedOperationException("Las películas individuales no tienen hijos.");
     }
 
+    /**
+     * Lanza una excepción ya que las películas individuales no tienen hijos.
+     * @param indice El índice del hijo.
+     * @return El producto correspondiente.
+     */
     @Override
     public Producto obtenerHijo(int indice) {
         throw new UnsupportedOperationException("Las películas individuales no tienen hijos.");
     }
 
+    /**
+     * Crea un iterador vacío para la película individual.
+     * @return Un iterador vacío.
+     */
     @Override
     public Iterator<Producto> crearIterador() {
         return Collections.emptyIterator();
