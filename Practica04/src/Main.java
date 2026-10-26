@@ -66,10 +66,10 @@ public class Main {
 	catalogo.agregarProducto(jh4);
 	catalogo.agregarProducto(jh5);
 	catalogo.agregarProducto(jh6);
-	
+
+	System.out.println("======= Bienvenidx a la Tienda de Peliculas y Musica RockBuster =======");
 	boolean salir = false;
 	while (!salir) {
-	    System.out.println("======= Bienvenidx a la Tienda de Peliculas y Musica RockBuster =======");
 	    System.out.println("Escoga la accion que desee realizar: ");
 	    System.out.println("1. Ver el catálogo completo");
 	    System.out.println("2. Filtrar por género");
@@ -88,14 +88,12 @@ public class Main {
 		System.out.print("\nEspecifique el género a filtrar: ");
 		String genero = scanner.nextLine();
 		catalogo.filtrarPorGenero(genero);
-		seleccionarDetallesProducto(catalogo, scanner);
 		break;
 	    case "3":
 		System.out.print("\nEspecifique el costo máximo de precio: ");
 		try {
 		    double max = Double.parseDouble(scanner.nextLine());
 		    catalogo.filtrarPorCostoMaximo(max);
-		    seleccionarDetallesProducto(catalogo, scanner);
 		} catch (NumberFormatException e) {
 		    System.out.println("Monto inválido. Ingrese un valor numérico.");
 		}
