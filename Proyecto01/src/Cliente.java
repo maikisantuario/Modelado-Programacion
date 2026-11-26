@@ -1,195 +1,148 @@
-package tienda;
-
 /**
- * Representa a un cliente registrado en CheemsMart.
- * Almacena informacion personal, cuenta bancaria, pais de origen y saldo.
- * Implementa el patron Observer para poder recibir ofertas.
+ * Representa a un cliente registrado en la tienda virtual CheemsMart.
+ * Implementa {@link IObserverCliente} para recibir notificaciones de ofertas
+ * correspondientes a su país de origen.
  */
-public class Cliente implements IObservadorCliente {
-
-    /** Identificador unico del cliente. */
+public class Cliente implements IObserverCliente {
+    /** Identificador único del cliente. */
     private String id;
 
-    /** Nombre de usuario para iniciar sesion. */
+    /** Nombre de usuario para iniciar sesión. */
     private String usuario;
 
-    /** Contrasena del cliente. */
+    /** Contraseña de acceso del cliente. */
     private String contrasena;
 
-    /** Nombre real del cliente. */
+    /** Nombre completo del cliente. */
     private String nombre;
 
-    /** Telefono de contacto. */
+    /** Número telefónico del cliente. */
     private String telefono;
 
-    /** Direccion de envio. */
+    /** Dirección de entrega del cliente. */
     private String direccion;
 
-    /** Cuenta bancaria asociada al cliente. */
+    /** Número de cuenta bancaria asociada para compra segura. */
     private String cuentaBancaria;
 
-    /** Pais de origen del cliente. */
+    /** País de origen que determina la localización de la interfaz. */
     private String pais;
 
-    /** Saldo disponible del cliente. */
+    /** Saldo disponible del cliente para realizar compras. */
     private double dinero;
 
-    /** Oferta actual recibida (null si no hay oferta). */
-    private String ofertaActual;
-
     /**
-     * Constructor completo del cliente.
+     * Construye un cliente con todos sus datos de registro y saldo inicial.
      *
-     * @param id             Identificador unico.
-     * @param usuario        Nombre de usuario.
-     * @param contrasena     Contrasena.
-     * @param nombre         Nombre real.
-     * @param telefono       Telefono.
-     * @param direccion      Direccion.
-     * @param cuentaBancaria Cuenta bancaria.
-     * @param pais           Pais de origen.
-     * @param dinero         Saldo inicial.
+     * @param id             identificador único del cliente
+     * @param usuario        nombre de usuario
+     * @param contrasena     contraseña de acceso
+     * @param nombre         nombre completo
+     * @param telefono       teléfono de contacto
+     * @param direccion      dirección de domicilio
+     * @param cuentaBancaria cuenta bancaria asociada
+     * @param pais           país de origen
+     * @param dinero         saldo disponible
      */
-    public Cliente(String id, String usuario, String contrasena, String nombre,
-                   String telefono, String direccion, String cuentaBancaria,
-                   String pais, double dinero) {
-        this.id = id;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.cuentaBancaria = cuentaBancaria;
-        this.pais = pais;
-        this.dinero = dinero;
-        this.ofertaActual = null;
+
+    public Cliente(String id, String usuario, String contrasena, String nombre, String nombre, String telefono, String direccion, String cuentaBancaria, String pais, double dinero) {
+	this.id = id;
+	this.usuario = usuario;
+	this.contrasena = contrasena;
+	this.nombre = nombre;
+	this.telefono = telefono;
+	this.direccion = direccion;
+	this.cuentaBancaria = cuentaBancaria;
+	this.pais = pais;
+	this.dinero = dinero;
     }
 
     /**
-     * Obtiene el identificador del cliente.
+     * Obtiene el nombre de usuario del cliente.
      *
-     * @return El identificador.
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Obtiene el nombre de usuario.
-     *
-     * @return El nombre de usuario.
+     * @return nombre de usuario
      */
     public String getUsuario() {
-        return usuario;
+	return usuario;
     }
 
     /**
-     * Valida las credenciales del cliente.
+     * Verifica si la contraseña ingresada coincide con la registrada.
      *
-     * @param usuario    Nombre de usuario ingresado.
-     * @param contrasena Contrasena ingresada.
-     * @return true si coinciden, false de lo contrario.
+     * @param pass contraseña ingresada
+     * @return {@code true} si coincide, {@code false} en caso contrario
      */
-    public boolean validarCredenciales(String usuario, String contrasena) {
-        return this.usuario.equals(usuario) && this.contrasena.equals(contrasena);
+    public boolean validarContrasena(String pass) {
+        return contrasena != null && contrasena.equals(pass);
     }
 
     /**
-     * Valida la cuenta bancaria del cliente.
+     * Verifica si el número de cuenta bancaria coincide con la cuenta asociada al cliente.
      *
-     * @param cuenta Cuenta bancaria ingresada.
-     * @return true si coincide, false de lo contrario.
+     * @param cuenta número de cuenta bancaria ingresado
+     * @return {@code true} si coincide, {@code false} en caso contrario
      */
     public boolean validarCuenta(String cuenta) {
-        return this.cuentaBancaria.equals(cuenta);
+        return cuentaBancaria != null && cuentaBancaria.equals(cuenta);
     }
 
     /**
-     * Obtiene el pais de origen del cliente.
+     * Obtiene el país de origen del cliente.
      *
-     * @return El pais.
+     * @return país de origen
      */
     public String getPais() {
         return pais;
     }
 
     /**
-     * Obtiene el nombre real del cliente.
+     * Obtiene el dinero disponible del cliente.
      *
-     * @return El nombre.
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Obtiene la direccion del cliente.
-     *
-     * @return La direccion.
-     */
-    public String getDireccion() {
-        return direccion;
-    }
-
-    /**
-     * Obtiene la cuenta bancaria del cliente.
-     *
-     * @return La cuenta bancaria.
-     */
-    public String getCuentaBancaria() {
-        return cuentaBancaria;
-    }
-
-    /**
-     * Obtiene el saldo disponible del cliente.
-     *
-     * @return El saldo.
+     * @return saldo actual
      */
     public double getDinero() {
         return dinero;
     }
 
     /**
-     * Descuenta un monto del saldo del cliente.
+     * Descuenta un monto del saldo del cliente si cuenta con fondos suficientes.
      *
-     * @param monto Monto a descontar.
-     * @return true si se desconto, false si no hay saldo suficiente.
+     * @param monto cantidad a descontar
+     * @return {@code true} si se realizó el descuento, {@code false} si no alcanza el saldo
      */
     public boolean descontarDinero(double monto) {
-        if (this.dinero >= monto) {
-            this.dinero -= monto;
-            return true;
+        if (monto < 0 || dinero < monto) {
+            return false;
         }
-        return false;
+        dinero -= monto;
+        return true;
     }
 
     /**
-     * Obtiene la oferta actual del cliente.
+     * Obtiene el nombre del cliente.
      *
-     * @return La oferta actual o null.
+     * @return nombre completo
      */
-    public String getOfertaActual() {
-        return ofertaActual;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * Actualiza la oferta del cliente (patron Observer).
+     * Obtiene la dirección de entrega del cliente.
      *
-     * @param oferta Texto descriptivo de la oferta.
+     * @return dirección del cliente
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * Recibe y muestra una notificación de oferta enviada por el servidor.
+     *
+     * @param oferta mensaje de oferta formateado
      */
     @Override
-    public void actualizarOferta(String oferta) {
-        this.ofertaActual = oferta;
-    }
-
-    /**
-     * Devuelve una representacion en cadena del cliente.
-     *
-     * @return Cadena con la informacion del cliente.
-     */
-    @Override
-    public String toString() {
-        return String.format("Cliente[id=%s, usuario=%s, nombre=%s, pais=%s, saldo=%.2f]",
-                id, usuario, nombre, pais, dinero);
+    public void actualizar(String oferta) {
+	System.out.println("[" + nombre + " (" + pais + ")]: " + oferta);
     }
 }
