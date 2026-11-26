@@ -1,5 +1,3 @@
-package tienda;
-
 /**
  * Representa un producto disponible en el catalogo de CheemsMart.
  * Almacena codigo de barras, nombre, departamento y precio.
