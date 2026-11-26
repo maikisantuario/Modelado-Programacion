@@ -1,5 +1,3 @@
-package tienda;
-
 /**
  * Interfaz que define el contrato del catalogo de productos.
  * Permite abstraer el acceso al catalogo real mediante un Proxy.

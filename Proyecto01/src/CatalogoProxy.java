@@ -1,5 +1,3 @@
-package tienda;
-
 /**
  * Proxy de seguridad para el catalogo real.
  * Controla el acceso al CatalogoReal verificando los permisos antes de cargarlo.
