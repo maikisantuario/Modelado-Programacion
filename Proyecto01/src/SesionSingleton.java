@@ -8,7 +8,7 @@ public class SesionSingleton {
     private static SesionSingleton instancia;
 
     /** Cliente actualmente autenticado. */
-    private Cliente clienteActual;
+    private ICliente clienteActual;
 
     /** Carrito de compras asociado a la sesión actual. */
     private CarritoDeCompras carritoActual;
@@ -41,7 +41,7 @@ public class SesionSingleton {
      * @param c      cliente autenticado
      * @param idioma estrategia de localización
      */
-    public void iniciarSesion(Cliente c, ILocalizacionStrategy idioma) {
+    public void iniciarSesion(ICliente c, ILocalizacionStrategy idioma) {
         this.clienteActual = c;
         this.estrategiaIdioma = idioma;
         this.carritoActual = new CarritoDeCompras();
@@ -63,7 +63,7 @@ public class SesionSingleton {
      *
      * @return cliente actual o {@code null} si no hay sesión iniciada
      */
-    public Cliente getClienteActual() {
+    public ICliente getClienteActual() {
         return clienteActual;
     }
 

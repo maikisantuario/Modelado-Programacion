@@ -17,9 +17,9 @@ public class ClienteProxy implements ICliente {
      *
      * @param clienteReal cliente real al que se controlará el acceso
      */
-    public ClienteProxy() {
+    public ClienteProxy(ClienteReal clienteReal) {
 	this.clienteReal = clienteReal;
-	this.cuentaVerificad = null;
+	this.cuentaVerificada = false;
     }
     
     /**

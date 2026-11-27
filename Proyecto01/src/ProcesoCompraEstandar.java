@@ -44,7 +44,7 @@ public class ProcesoCompraEstandar extends ProcesoCompraTemplate {
      * @return monto total final
      */
     private double calcularTotalFinal() {
-        Cliente cliente = sesion.getClienteActual();
+        ICliente cliente = sesion.getClienteActual();
         double total = 0.0;
         for (Producto p : sesion.getCarritoActual().getProductos()) {
             double precioUnitario = p.getPrecio();
@@ -74,7 +74,7 @@ public class ProcesoCompraEstandar extends ProcesoCompraTemplate {
 
     @Override
     protected boolean validarYProcesarPago(String cuentaIngresada) {
-        Cliente cliente = sesion.getClienteActual();
+        ICliente cliente = sesion.getClienteActual();
         if (!cliente.validarCuenta(cuentaIngresada)) {
             return false;
         }

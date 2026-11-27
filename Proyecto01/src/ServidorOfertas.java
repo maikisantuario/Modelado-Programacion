@@ -69,8 +69,8 @@ public class ServidorOfertas implements ITiendaSujeto {
             return;
         }
         for (IObserverCliente o : observadores) {
-            if (o instanceof Cliente) {
-                Cliente cliente = (Cliente) o;
+            if (o instanceof ICliente) {
+                ICliente cliente = (ICliente) o;
                 if (cliente.getPais().equalsIgnoreCase(paisObjetivo)) {
                     cliente.actualizar(ofertaActual);
                 }

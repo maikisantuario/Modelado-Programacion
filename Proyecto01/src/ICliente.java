@@ -5,7 +5,7 @@
  * Extiende {@link IObserverCliente} para que cualquiera de los dos pueda recibir
  * las ofertas enviadas por el servidor.
  */
-public interface ICliente extends IObservadorCliente {
+public interface ICliente extends IObserverCliente {
     /**
      * Obtiene el nombre de usuario del cliente.
      *

@@ -1,4 +1,4 @@
-import.java.util.Scanner;
+import java.util.Scanner;
 
 /**
  * Estrategia que permite al cliente reintentar ingresar su cuenta o cancelar la compra.

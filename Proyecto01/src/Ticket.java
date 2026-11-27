@@ -6,7 +6,7 @@ import java.util.List;
 public class Ticket {
 
     /** Cliente que realizó la compra. */
-    private Cliente cliente;
+    private ICliente cliente;
 
     /** Lista de productos comprados. */
     private List<Producto> productos;
@@ -25,7 +25,7 @@ public class Ticket {
      * @param totalPagado  total pagado
      * @param fechaEntrega fecha estimada de entrega
      */
-    public Ticket(Cliente cliente, List<Producto> productos, double totalPagado, String fechaEntrega) {
+    public Ticket(ICliente cliente, List<Producto> productos, double totalPagado, String fechaEntrega) {
         this.cliente = cliente;
         this.productos = productos;
         this.totalPagado = totalPagado;
