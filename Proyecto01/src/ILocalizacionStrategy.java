@@ -27,6 +27,13 @@ public interface ILocalizacionStrategy {
     String mensajeMenuPrincipal();
 
     /**
+     * Genera el mensaje de error cuando no se escoge el numero correcto del menu.
+     *
+     * @return El mensaje de error.
+     */
+    String mensajeErrorMenu();
+
+    /**
      * Genera el mensaje cuando una compra es exitosa.
      *
      * @param fecha Fecha estimada de entrega.

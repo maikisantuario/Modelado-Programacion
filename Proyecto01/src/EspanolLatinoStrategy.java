@@ -39,6 +39,16 @@ public class EspanolLatinoStrategy implements ILocalizacionStrategy {
     }
 
     /**
+     * Genera el mensaje de error de menu en espanol latino.
+     *
+     * @return El mensaje.
+     */
+    @Override
+    public String mensajeErrorMenu() {
+        return "Error: Entrada no válida. Vuelva a intentarlo.";
+    }
+
+    /**
      * Genera el mensaje de compra exitosa en espanol latino.
      *
      * @param fecha Fecha estimada de entrega.

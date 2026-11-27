@@ -11,32 +11,18 @@ public class Main {
 	Scanner scanner = new Scanner(System.in);
 	inicializarClientes();
 	
-	System.out.println("============= CheemsMart - Tienda en Linea =============");	    
-	ICliente cliente = autenticarUsuario(scanner);
-	ILocalizacionStrategy idioma = asignarEstrategiaIdioma(cliente.getPais());
-	System.out.println(idioma.saludar(cliente.getNombre()));
-	System.out.println(idioma.mensajeMenuPrincipal());
+	System.out.println("============= CheemsMart - Tienda en Linea =============");
+	while (true) {
+	    ICliente cliente = autenticarUsuario(scanner);
+	    if (cliente == null)
+		break;
+	    ILocalizacionStrategy idioma = asignarEstrategiaIdioma(cliente.getPais());
+	    System.out.println(idioma.saludar(cliente.getNombre()));
+	    mostrarMenuTienda(scanner, idioma, cliente);
+	}
+	System.out.println("🇲🇽¡Hasta pronto! / 🇺🇸See you later! / 🇮🇹A presto!");
+	
 
-	try {
-	    int opcion = Integer.parseInt(scanner.nextLine());
-	    if (opcion == 4) {
-		System.out.println(idioma.despedirse());
-		return;
-	    }
-	    if (opcion == 3) {
-		System.out.println(idioma.despedirse());
-	    }
-	    if (opcion == 2) {
-		System.out.println(idioma.despedirse());
-	    }
-	    if (opcion == 1) {
-		System.out.println(idioma.despedirse());
-	    } else {
-		System.out.println("lol");
-	    }
-	} catch (NumberFormatException e) {
-            System.out.println("Entrada no válida. Regresando al menú principal...");
-        }
     }
     
     private static void inicializarClientes(){
@@ -58,6 +44,8 @@ public class Main {
 	while (cliente == null) {
 	    System.out.print("🇲🇽usuario / 🇺🇸username / 🇮🇹utente: \n > ");
 	    String usuario = sc.nextLine();
+	    if (usuario.equalsIgnoreCase("salida"))
+		return null;
 	    System.out.print("🇲🇽contrasena / 🇺🇸🇮🇹password: \n > ");
 	    String contrasena = sc.nextLine();
 	    for (ICliente c : clientesRegistrados) {
@@ -76,18 +64,36 @@ public class Main {
 	EspanolLatinoStrategy espanol = new EspanolLatinoStrategy();
 	InglesUsaStrategy ingles = new InglesUsaStrategy();
 	if (pais.equalsIgnoreCase("Italia")) {
-	return italiano;
+	    return italiano;
 	}
 	if (pais.equalsIgnoreCase("Mexico")) {
-	return espanol;
+	    return espanol;
 	}
 	if (pais.equalsIgnoreCase("Estados Unidos")) {
-	return ingles;
+	    return ingles;
 	}
 	return espanol;
     }
-    private static void mostrarMenuTienda(Scanner sc){
-	System.out.println("");
-	return;
+    private static void mostrarMenuTienda(Scanner sc, ILocalizacionStrategy idioma, ICliente cliente){
+	boolean sesion = true;
+	while (sesion) {
+	    System.out.println(idioma.mensajeMenuPrincipal());
+	    try {
+		int opcion = Integer.parseInt(sc.nextLine());
+		if (opcion == 1) {
+		    // cliente.obtenerCatalogo();
+		} else if (opcion == 2) {
+		    // compra
+		} else if (opcion == 3) {
+		    System.out.println(idioma.despedirse());
+		    sesion = false;
+		    //return opcion;
+		} else {
+		    System.out.println(idioma.mensajeErrorMenu());
+		}
+	    } catch (NumberFormatException e) {
+		System.out.println(idioma.mensajeErrorMenu());
+	    }
+	}
     }
 }

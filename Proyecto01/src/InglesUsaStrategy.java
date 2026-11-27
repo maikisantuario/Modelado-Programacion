@@ -38,6 +38,16 @@ public class InglesUsaStrategy implements ILocalizacionStrategy {
 	    "Select an option: ";
     }
 
+        /**
+     * Genera el mensaje de error de menu en ingles americano.
+     *
+     * @return El mensaje.
+     */
+    @Override
+    public String mensajeErrorMenu() {
+        return "Error: Invalid input. Please try again.";
+    }
+
     /**
      * Genera el mensaje de compra exitosa en ingles americano.
      *

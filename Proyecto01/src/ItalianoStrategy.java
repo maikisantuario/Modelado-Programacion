@@ -38,6 +38,16 @@ public class ItalianoStrategy implements ILocalizacionStrategy {
 	    "Seleziona un'opzione: ";
     }
 
+     /**
+     * Genera el mensaje de error de menu en italiano.
+     *
+     * @return El mensaje.
+     */
+    @Override
+    public String mensajeErrorMenu() {
+	return "Errore: Input non valido. Riprova.";
+    }
+
     /**
      * Genera el mensaje de compra exitosa en italiano.
      *
