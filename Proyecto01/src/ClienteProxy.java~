@@ -1,0 +1,85 @@
+/**
+ * Proxy de seguridad para el catalogo real.
+ * Controla el acceso al CatalogoReal verificando los permisos antes de cargarlo.
+ */
+public class ClienteProxy implements ICliente {
+    private ClienteReal clienteReal;
+    public ClienteProxy() {
+	this.clienteReal = null;
+    }
+    /**
+     * Obtiene el nombre de usuario del cliente.
+     *
+     * @return usuario
+     */
+    public String getUsuario() {
+	return clienteReal.usuario;
+    }
+    /**
+     * Verifica si la contraseña ingresada coincide con la registrada.
+     *
+     * @param pass contraseña ingresada
+     */
+    public boolean validarContrasena(String pass) {
+	return clienteReal.contrasena;
+    }
+
+    /**
+     * Verifica si el número de cuenta bancaria coincide con la cuenta asociada al cliente.
+     *
+     * @param cuenta número de cuenta bancaria ingresado
+     */
+    public boolean validarCuenta(String cuenta) {
+	return clienteReal.cuentaBancaria != null && clienteReal.cuentaBancaria.equals(cuenta);
+    }
+    /**
+     * Obtiene el país de origen del cliente.
+     */
+    public String getPais() {
+	return clienteReal.pais;
+    }
+
+    /**
+     * Obtiene el dinero disponible del cliente.
+     */
+    public double getDinero() {
+	return clienteReal.dinero;
+    }
+
+    /**
+     * Descuenta un monto del saldo del cliente si cuenta con fondos suficientes.
+     *
+     * @param monto cantidad a descontar
+     */
+    public boolean descontarDinero(double monto) {
+	if (monto < 0 || clienteReal.dinero < monto) {
+            return false;
+        }
+        clienteReal.dinero -= monto;
+        return true;
+    }
+
+    /**
+     * Obtiene el nombre del cliente.
+     */
+    public String getNombre() {
+	return clienteReal.nombre;
+    }
+
+    /**
+     * Obtiene la dirección de entrega del cliente.
+     */
+    public String getDireccion() {
+	return clienteReal.direccion;
+    }
+
+    /**
+     * Recibe y muestra una notificación de oferta enviada por el servidor.
+     *
+     * @param oferta mensaje de oferta formateado
+     */
+    @Override
+    public void actualizar(String oferta) {
+	System.out.println("[" + clienteReal.nombre + " (" + clienteReal.pais + ")]: " + clienteReal.oferta);
+    }
+}
