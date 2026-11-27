@@ -2,7 +2,7 @@
  * Implementacion de la estrategia de localizacion para el idioma Espanol Latino.
  */
 public class EspanolLatinoStrategy implements ILocalizacionStrategy {
-
+    
     /**
      * Genera el saludo en espanol latino.
      *
@@ -20,7 +20,7 @@ public class EspanolLatinoStrategy implements ILocalizacionStrategy {
      * @return La despedida.
      */
     @Override
-    public String despedida() {
+    public String despedirse() {
         return "¡Gracias por su compra! Vuelva pronto.";
     }
 
@@ -30,7 +30,7 @@ public class EspanolLatinoStrategy implements ILocalizacionStrategy {
      * @return El menu.
      */
     @Override
-    public String menuPrincipal() {
+    public String mensajeMenuPrincipal() {
         return "=== MENU PRINCIPAL ===\n" +
                "1. Ver catalogo\n" +
                "2. Realizar una compra\n" +

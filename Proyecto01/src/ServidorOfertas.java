@@ -64,7 +64,7 @@ public class ServidorOfertas implements ITiendaSujeto {
      * Notifica la oferta únicamente a los observadores que pertenecen al país objetivo.
      */
     @Override
-    public void notificarObservadores() {
+    public void notificarObservador() {
         if (!ofertaActiva || ofertaActual == null) {
             return;
         }
