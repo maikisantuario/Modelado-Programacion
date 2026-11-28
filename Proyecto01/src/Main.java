@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Clase principal de la tienda virtual CheemsMart.
@@ -17,6 +19,15 @@ public class Main {
 
     /** Servidor encargado de generar y notificar ofertas a los clientes. */
     private static ServidorOfertas servidorOfertas = new ServidorOfertas();
+
+    /** Asocia cada país (en minúsculas y sin acentos) con su estrategia de localización. */
+    private static Map<String, ILocalizacionStrategy> estrategiasIdioma = new HashMap<>();
+
+    static {
+        estrategiasIdioma.put("mexico", new EspanolLatinoStrategy());
+        estrategiasIdioma.put("italia", new ItalianoStrategy());
+        estrategiasIdioma.put("estados unidos", new InglesUsaStrategy());
+    }
 
     /**
      * Metodo principal que inicia la tienda y atiende las sesiones
@@ -104,19 +115,7 @@ public class Main {
      * @return La estrategia de idioma asociada.
      */
     private static ILocalizacionStrategy asignarEstrategiaIdioma(String pais){
-	ItalianoStrategy italiano = new ItalianoStrategy();
-	EspanolLatinoStrategy espanol = new EspanolLatinoStrategy();
-	InglesUsaStrategy ingles = new InglesUsaStrategy();
-	if (pais.equalsIgnoreCase("Italia")) {
-	    return italiano;
-	}
-	if (pais.equalsIgnoreCase("Mexico")) {
-	    return espanol;
-	}
-	if (pais.equalsIgnoreCase("Estados Unidos")) {
-	    return ingles;
-	}
-	return espanol;
+	return estrategiasIdioma.getOrDefault(pais.toLowerCase(), estrategiasIdioma.get("mexico"));
     }
 
     /**
