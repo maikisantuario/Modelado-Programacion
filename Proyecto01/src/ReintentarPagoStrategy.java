@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
 /**
- * Estrategia que permite al cliente reintentar ingresar su cuenta o cancelar la compra.
+ * Estrategia que le pregunta al usuario si quiere intentar el pago otra vez o cancelar.
  */
 public class ReintentarPagoStrategy implements IManejoFalloPagoStrategy {
 
     /**
-     * Lector de consola para capturar la decisión del usuario.
+     * Lector para leer la respuesta del usuario.
      */
     private Scanner scanner;
 
     /**
-     * Construye la estrategia con un lector de consola.
+     * CCrea la estrategia con el lector de entrada
      *
      * @param scanner lector de entrada
      */
@@ -19,6 +19,12 @@ public class ReintentarPagoStrategy implements IManejoFalloPagoStrategy {
 	this.scanner = scanner;
     }
 
+    /**
+     * Consulta si el usuario quiere volver a intentar el pago o cancelar.
+     *
+     * @param sesion sesión activa
+     * @return {@code true} si responde "s", {@code false} en otro caso
+     */
     @Override
     public boolean manejarFallo(SesionSingleton sesion) {
 	System.out.print("¿Deseas reintentar? (s/n): ");

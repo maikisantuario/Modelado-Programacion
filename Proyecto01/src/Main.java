@@ -2,11 +2,28 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Clase principal de la tienda virtual CheemsMart.
+ * Administra el ciclo de inicio de sesión, selección de idioma, notificación
+ * de ofertas, navegación del catálogo y flujo de compra por consola.
+ */
 public class Main {
+
+    /** Lista de clientes registrados en el sistema. */
     private static List<ICliente> clientesRegistrados = new ArrayList<>();
+
+    /** Proxy de acceso al catálogo de productos. */
     private static ICatalogo catalogo = new CatalogoProxy();
+
+    /** Servidor encargado de generar y notificar ofertas a los clientes. */
     private static ServidorOfertas servidorOfertas = new ServidorOfertas();
 
+    /**
+     * Metodo principal que inicia la tienda y atiende las sesiones
+     * hasta que se escriba salida.
+     *
+     * @param args Argumentos de linea de comandos.
+     */
     public static void main (String[] args) {
 	Scanner scanner = new Scanner(System.in);
 	inicializarClientes();
@@ -29,7 +46,11 @@ public class Main {
 	
 
     }
-    
+
+    /**
+     * Crea los clientes iniciales, los protege mediante {@link ClienteProxy},
+     * los agrega a la lista de registrados y los suscribe al servidor de ofertas.
+     */
     private static void inicializarClientes(){
 	ClienteReal clienteReal1 = new ClienteReal("SIGMA67", "regsoav", "c0n7r4s3n4", "Regina", "5566667777", "Arboledas 12 Col Ampliacion Tepepan Xochimilco CDMX", "12345678910", "Mexico", 30000);
 	ClienteReal clienteReal2 = new ClienteReal("SABC234", "cirosdiego", "c0n7r4s3n42", "Diego", "5512345678", "Via Regina 98 Como Brienno", "12345678912", "Italia", 30000);
@@ -47,7 +68,14 @@ public class Main {
 	servidorOfertas.registrarObservador(cliente2);
 	servidorOfertas.registrarObservador(cliente3);
     }
-    
+
+    /**
+     * Solicita usuario y contrasena hasta autenticar a un cliente
+     * o recibir la palabra salida.
+     *
+     * @param sc Scanner para leer la entrada por consola.
+     * @return El cliente autenticado, o null si se indica salir.
+     */
     private static ICliente autenticarUsuario(Scanner sc) {
 	ICliente cliente = null;
 	
@@ -68,7 +96,13 @@ public class Main {
 	}
 	return cliente;
     }
-    
+
+    /**
+     * Regresa la estrategia de localizacion correspondiente al pais del cliente.
+     *
+     * @param pais Pais del cliente.
+     * @return La estrategia de idioma asociada.
+     */
     private static ILocalizacionStrategy asignarEstrategiaIdioma(String pais){
 	ItalianoStrategy italiano = new ItalianoStrategy();
 	EspanolLatinoStrategy espanol = new EspanolLatinoStrategy();
@@ -84,6 +118,15 @@ public class Main {
 	}
 	return espanol;
     }
+
+    /**
+     * Muestra el menu principal de la tienda y atiende las opciones del cliente
+     * mientras dure la sesion.
+     *
+     * @param sc      Scanner para leer la opcion elegida.
+     * @param idioma  Estrategia de localizacion activa.
+     * @param cliente Cliente autenticado en la sesion actual.
+     */
     private static void mostrarMenuTienda(Scanner sc, ILocalizacionStrategy idioma, ICliente cliente){
 	boolean sesion = true;
 	while (sesion) {
