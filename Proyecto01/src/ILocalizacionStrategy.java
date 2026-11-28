@@ -34,6 +34,13 @@ public interface ILocalizacionStrategy {
     String mensajeErrorMenu();
 
     /**
+     * Genera el menu de compra de la tienda.
+     *
+     * @return El menu en el idioma correspondiente.
+     */
+    String mensajeMenuCompra();
+
+    /**
      * Genera el mensaje cuando una compra es exitosa.
      *
      * @param fecha Fecha estimada de entrega.
@@ -56,4 +63,12 @@ public interface ILocalizacionStrategy {
      * @return El texto formateado de la oferta.
      */
     String formatearOferta(String departamento, int descuento);
+
+    /**
+     * Genera el mensaje que se muestra cuando el saldo del cliente no alcanza
+     * para cubrir el total de la compra.
+     *
+     * @return el mensaje de saldo insuficiente en el idioma de la estrategia
+     */
+    String mensajeSaldoInsuficiente();
 }

@@ -30,11 +30,12 @@ public class ProcesoCompraEstandar extends ProcesoCompraTemplate {
      *
      * @param estrategiaFallo estrategia ante fallo de pago
      * @param ofertas        servidor de ofertas activo
+     * @param scanner 
      */
-    public ProcesoCompraEstandar(IManejoFalloPagoStrategy estrategiaFallo, ServidorOfertas ofertas) {
+    public ProcesoCompraEstandar(IManejoFalloPagoStrategy estrategiaFallo, ServidorOfertas ofertas, Scanner scanner) {
         super(estrategiaFallo);
         this.ofertas = ofertas;
-        this.scanner = new Scanner(System.in);
+        this.scanner = scanner;
         this.productosComprados = new ArrayList<>();
     }
 
@@ -73,18 +74,20 @@ public class ProcesoCompraEstandar extends ProcesoCompraTemplate {
     }
 
     @Override
-    protected boolean validarYProcesarPago(String cuentaIngresada) {
-        ICliente cliente = sesion.getClienteActual();
-        if (!cliente.validarCuenta(cuentaIngresada)) {
-            return false;
-        }
-        double total = calcularTotalFinal();
-        if (!cliente.descontarDinero(total)) {
-            return false;
-        }
-        this.totalCobrado = total;
-        this.productosComprados = new ArrayList<>(sesion.getCarritoActual().getProductos());
-        return true;
+    protected boolean verificarCuenta(String cuentaIngresada) {
+	return sesion.getClienteActual().validarCuenta(cuentaIngresada);
+    }
+
+    @Override
+    protected boolean procesarPago() {
+	ICliente cliente = sesion.getClienteActual();
+	double total = calcularTotalFinal();
+	if (cliente.getDinero() < total || !cliente.descontarDinero(total)) {
+	    return false;
+	}
+	this.totalCobrado = total;
+	this.productosComprados = new ArrayList<>(sesion.getCarritoActual().getProductos());
+	return true;
     }
 
     @Override

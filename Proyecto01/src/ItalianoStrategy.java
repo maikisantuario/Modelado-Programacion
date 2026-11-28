@@ -38,7 +38,7 @@ public class ItalianoStrategy implements ILocalizacionStrategy {
 	    "Seleziona un'opzione: ";
     }
 
-     /**
+    /**
      * Genera el mensaje de error de menu en italiano.
      *
      * @return El mensaje.
@@ -46,6 +46,20 @@ public class ItalianoStrategy implements ILocalizacionStrategy {
     @Override
     public String mensajeErrorMenu() {
 	return "Errore: Input non valido. Riprova.";
+    }
+
+    /**
+     * Genera el menu de compra en italiano.
+     *
+     * @return El menu.
+     */
+    @Override
+    public String mensajeMenuCompra() {
+        return "=== MENU ACQUISTI ===\n" +
+	    "1. Aggiungi prodotto al carrello\n" +
+	    "2. Annulla acquisto\n" +
+	    "3. Completa acquisto\n" +
+	    "Seleziona un'opzione: ";
     }
 
     /**
@@ -79,5 +93,15 @@ public class ItalianoStrategy implements ILocalizacionStrategy {
     @Override
     public String formatearOferta(String departamento, int descuento) {
 	return "OFFERTA SPECIALE! Sconto del " + descuento + "% sui prodotti di " + departamento + ".";
+    }
+
+    /**
+     * Genera el mensaje de saldo insuficiente en italiano.
+     *
+     * @return El mensaje.
+     */
+    @Override
+    public String mensajeSaldoInsuficiente() {
+	return "Errore: Saldo insufficiente. L'acquisto è stato annullato.";
     }
 }

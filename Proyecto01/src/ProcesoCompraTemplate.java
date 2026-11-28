@@ -29,21 +29,26 @@ public abstract class ProcesoCompraTemplate {
 	    System.out.println("No hay productos en el carrito.");
 	    return;
 	}
+	ILocalizacionStrategy idioma = sesion.getEstrategiaIdioma();
 	mostrarResumenCarrito();
 	boolean aprobado = false;
 
 	while (!aprobado) {
 	    String cuenta = solicitarCuentaBancaria();
-	    if (validarYProcesarPago(cuenta)) {
-		aprobado = true;
-	    } else {
-		System.out.println(sesion.getEstrategiaIdioma().mensajeErrorPago());
-		boolean reintentar = estrategiaFallo.manejarFallo(sesion);
-		if (!reintentar) {
+	    if (!verificarCuenta(cuenta)) {
+		System.out.println(idioma.mensajeErrorPago());
+		if (!estrategiaFallo.manejarFallo(sesion)) {
 		    sesion.getCarritoActual().vaciarCarrito();
 		    return;
 		}
+	    } else if (!procesarPago()) {
+		System.out.println(idioma.mensajeSaldoInsuficiente());
+		sesion.getCarritoActual().vaciarCarrito();
+		return;
+	    } else {
+		aprobado = true;
 	    }
+	    
 	}
 
 	Ticket ticket = generarTicket();
@@ -64,12 +69,19 @@ public abstract class ProcesoCompraTemplate {
     protected abstract String solicitarCuentaBancaria();
 
     /**
-     * Valida la cuenta bancaria, aplica ofertas vigentes y descuenta el saldo del cliente.
+     * Verifica que la cuenta ingresada coincida con la del cliente.
      *
      * @param cuentaIngresada cuenta bancaria ingresada
-     * @return {@code true} si el pago fue exitoso, {@code false} en caso contrario
+     * @return {@code true} si coincide, {@code false} en caso contrario
      */
-    protected abstract boolean validarYProcesarPago(String cuentaIngresada);
+    protected abstract boolean verificarCuenta(String cuentaIngresada);
+
+    /**
+     * Aplica las ofertas vigentes y descuenta el total del saldo del cliente.
+     *
+     * @return {@code true} si se cobró, {@code false} si el saldo no alcanza
+     */
+    protected abstract boolean procesarPago();
 
     /**
      * Genera el {@link Ticket} con los productos comprados, total y fecha estimada de entrega.

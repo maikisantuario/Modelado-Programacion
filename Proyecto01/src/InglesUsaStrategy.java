@@ -38,7 +38,7 @@ public class InglesUsaStrategy implements ILocalizacionStrategy {
 	    "Select an option: ";
     }
 
-        /**
+    /**
      * Genera el mensaje de error de menu en ingles americano.
      *
      * @return El mensaje.
@@ -46,6 +46,20 @@ public class InglesUsaStrategy implements ILocalizacionStrategy {
     @Override
     public String mensajeErrorMenu() {
         return "Error: Invalid input. Please try again.";
+    }
+
+    /**
+     * Genera el menu de compra en Ingles americano.
+     *
+     * @return El menu.
+     */
+    @Override
+    public String mensajeMenuCompra() {
+        return "=== SHOP MENU ===\n" +
+	    "1. Add to cart\n" +
+	    "2. Cancel Purchase\n" +
+	    "3. Finish purchase\n" +
+	    "Select an option: ";
     }
 
     /**
@@ -79,5 +93,15 @@ public class InglesUsaStrategy implements ILocalizacionStrategy {
     @Override
     public String formatearOferta(String departamento, int descuento) {
         return "SPECIAL OFFER! " + descuento + "% discount on " + departamento + " products.";
+    }
+
+    /**
+     * Genera el mensaje de saldo insuficiente en ingles americano.
+     *
+     * @return El mensaje.
+     */
+    @Override
+    public String mensajeSaldoInsuficiente() {
+	return "Error: Insufficient funds. The purchase has been canceled.";
     }
 }

@@ -100,7 +100,7 @@ public class ServidorOfertas implements ITiendaSujeto {
 
         this.paisObjetivo = pais;
         if ("Estados Unidos".equalsIgnoreCase(pais)) {
-            this.departamentoOferta = "Electrónica";
+            this.departamentoOferta = "Electronica";
         } else if ("Italia".equalsIgnoreCase(pais)) {
             this.departamentoOferta = "Alimentos";
         } else {

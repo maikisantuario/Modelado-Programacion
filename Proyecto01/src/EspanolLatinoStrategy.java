@@ -32,10 +32,10 @@ public class EspanolLatinoStrategy implements ILocalizacionStrategy {
     @Override
     public String mensajeMenuPrincipal() {
         return "=== MENU PRINCIPAL ===\n" +
-               "1. Ver catalogo\n" +
-               "2. Realizar una compra\n" +
-               "3. Salir\n" +
-               "Seleccione una opcion: ";
+	    "1. Ver catalogo\n" +
+	    "2. Realizar una compra\n" +
+	    "3. Salir\n" +
+	    "Seleccione una opcion: ";
     }
 
     /**
@@ -46,6 +46,20 @@ public class EspanolLatinoStrategy implements ILocalizacionStrategy {
     @Override
     public String mensajeErrorMenu() {
         return "Error: Entrada no válida. Vuelva a intentarlo.";
+    }
+
+    /**
+     * Genera el menu de compra en espanol latino.
+     *
+     * @return El menu.
+     */
+    @Override
+    public String mensajeMenuCompra() {
+        return "=== MENU COMPRA ===\n" +
+	    "1. Agregar al Carrito\n" +
+	    "2. Cancelar compra\n" +
+	    "3. Terminar Compra\n" +
+	    "Seleccione una opcion: ";
     }
 
     /**
@@ -79,5 +93,15 @@ public class EspanolLatinoStrategy implements ILocalizacionStrategy {
     @Override
     public String formatearOferta(String departamento, int descuento) {
         return "¡OFERTA ESPECIAL! Descuento del " + descuento + "% en productos de " + departamento + ".";
+    }
+
+    /**
+     * Genera el mensaje de saldo insuficiente en espanol latino.
+     *
+     * @return El mensaje.
+     */
+    @Override
+    public String mensajeSaldoInsuficiente() {
+	return "Error: Saldo insuficiente. La compra ha sido cancelada.";
     }
 }

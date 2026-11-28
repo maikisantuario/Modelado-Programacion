@@ -86,13 +86,11 @@ public class ClienteProxy implements ICliente {
     @Override
     public boolean descontarDinero(double monto) {
 	if (!cuentaVerificada) {
-            return false;
-        }
-        boolean descontado = clienteReal.descontarDinero(monto);
-        if (descontado) {
-            cuentaVerificada = false;
-        }
-        return descontado;
+	    return false;
+	}
+	boolean descontado = clienteReal.descontarDinero(monto);
+	cuentaVerificada = false;
+	return descontado;
     }
 
     /**

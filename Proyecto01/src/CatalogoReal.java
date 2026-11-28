@@ -28,7 +28,7 @@ public class CatalogoReal implements ICatalogo {
      */
     private void cargarProductosIniciales() {
         DepartamentoMenu electronica = new DepartamentoMenu("Electronica");
-        DepartamentoMenu farmacia = new DepartamentoMenu("Farmacia");
+        DepartamentoMenu farmacia = new DepartamentoMenu("Medicamentos");
         DepartamentoMenu alimentos = new DepartamentoMenu("Alimentos");
 
         // Productos de Electronica
@@ -36,8 +36,8 @@ public class CatalogoReal implements ICatalogo {
         Producto p2 = new Producto("1002", "Audifonos Bluetooth", "Electronica", 800.0);
         
         // Productos de Farmacia
-        Producto p3 = new Producto("2001", "Paracetamol 500mg", "Farmacia", 50.0);
-        Producto p4 = new Producto("2002", "Vitamina C", "Farmacia", 120.0);
+        Producto p3 = new Producto("2001", "Paracetamol 500mg", "Medicamentos", 50.0);
+        Producto p4 = new Producto("2002", "Vitamina C", "Medicamentos", 120.0);
 
         // Productos de Alimentos
         Producto p5 = new Producto("3001", "Cafe Molido 1kg", "Alimentos", 250.0);
